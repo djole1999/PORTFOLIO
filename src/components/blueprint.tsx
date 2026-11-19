@@ -77,7 +77,7 @@ export function Blueprint() {
       <div className="relative grid lg:grid-cols-[1fr_1.15fr] gap-8 lg:gap-12 items-stretch">
         <div className="flex flex-col">
           <p className="kicker">Kako nastaje sajt</p>
-          <h2 id="bp-title" className="text-2xl sm:text-4xl font-semibold tracking-tight">Od ideje do lansiranja <span className="text-gradient">u 3 koraka</span></h2>
+          <h2 id="bp-title" className="text-2xl sm:text-4xl font-semibold tracking-tight">Od ideje do objave <span className="text-gradient">u 3 koraka</span></h2>
           <div className="mt-8 grid gap-3" role="tablist" aria-label="Faze rada">
             {phases.map((ph, i) => (
               <button key={ph.id} role="tab" aria-selected={i === active} onClick={() => setActive(i)} className={`step-card ${i === active ? "is-active" : ""}`}>
