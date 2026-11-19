@@ -28,3 +28,8 @@ use the editor.
   own key and store it in Secrets.
 - **Secrets.** Lovable manages them. Do not put secret values in the repo.
 <!-- LOVABLE:END -->
+
+## Portfolio architecture
+- Keep the portfolio as one section-based index route because the brief explicitly requests navigation to page sections.
+- Keep contact validation and mailto creation in a browser-safe shared module; the form opens an email draft and must never claim server delivery.
+- Use actual website captures through CDN asset pointers for project previews, not invented representations of the linked work.
