@@ -1,4 +1,7 @@
 import { useEffect, useState } from "react";
+import { Link } from "@tanstack/react-router";
+import { ArrowRight } from "lucide-react";
+import { Button } from "@/components/ui/button";
 import { Lightbulb, Code2, Rocket, Check, Lock, Gauge, Globe } from "lucide-react";
 
 const IdejaView = () => (
@@ -6,7 +9,7 @@ const IdejaView = () => (
     {[["Početna", "Cilj i glavna poruka", 100], ["Usluge", "Šta nudite i kome", 75], ["Kontakt", "Kako vas klijent pronalazi", 50]].map(([t, d, w], i) => (
       <div key={t as string} className="flex items-center gap-3 rounded-xl border border-border bg-card/60 p-3 fade-up" style={{ animationDelay: `${i * 90}ms` }}>
         <span className="grid h-8 w-8 place-items-center rounded-lg bg-accent text-xs font-semibold">{i + 1}</span>
-        <div className="flex-1 min-w-0"><p className="text-sm font-medium">{t}</p><p className="text-xs text-muted-foreground truncate">{d}</p>
+        <div className="flex-1 min-w-0"><p className="text-sm font-medium">{t}</p><p className="text-[13px] text-foreground/75 truncate">{d}</p>
           <div className="mt-2 h-1 rounded bg-accent"><div className="bar-grow h-1 rounded bg-gradient-brand" style={{ width: `${w}%`, animationDelay: `${200 + i * 120}ms` }} /></div></div>
       </div>
     ))}
@@ -33,11 +36,11 @@ const LansView = () => (
       <Globe size={18} className="text-muted-foreground" /><span className="text-sm flex-1 truncate">vas-sajt.rs</span>
       <span className="inline-flex items-center gap-1.5 rounded-full bg-gradient-brand px-2.5 py-0.5 text-[11px] font-semibold text-primary-foreground"><span className="h-1.5 w-1.5 rounded-full bg-primary-foreground glow-pulse" /> Uživo</span>
     </div>
-    {[[Gauge, "Brzina", "Optimizovano"], [Lock, "HTTPS", "Bezbedna veza"], [Check, "Telefon", "Provereno"], [Check, "Računar", "Provereno"]].map(([I, t, d], i) => {
+    {[[Gauge, "Brzina", "[OVDE UNESI]"], [Lock, "HTTPS", "SSL uključen"], [Check, "Telefon", "[OVDE UNESI]"], [Check, "Računar", "[OVDE UNESI]"]].map(([I, t, d], i) => {
       const Icon = I as typeof Gauge;
       return (
         <div key={t as string} className="rounded-xl border border-border bg-card/60 p-3 fade-up" style={{ animationDelay: `${(i + 1) * 90}ms` }}>
-          <Icon size={16} style={{ color: "var(--brand-blue)" }} /><p className="mt-2 text-sm font-medium">{t as string}</p><p className="text-xs text-muted-foreground">{d as string}</p>
+          <Icon size={16} style={{ color: "var(--brand-blue)" }} /><p className="mt-2 text-sm font-medium">{t as string}</p><p className="text-[13px] text-foreground/75">{d as string}</p>
         </div>
       );
     })}
@@ -45,20 +48,28 @@ const LansView = () => (
 );
 
 const phases = [
-  { id: "ideja", label: "Ideja", icon: Lightbulb, file: "plan.md", title: "Skica i plan", text: "Razgovaramo o cilju, publici i sadržaju. Nastaje jasna struktura stranica.", View: IdejaView },
-  { id: "kod", label: "Kod & UI", icon: Code2, file: "hero.tsx", title: "Dizajn postaje kod", text: "Skica se pretvara u čist, brz i prilagodljiv interfejs.", View: KodView },
-  { id: "lansiranje", label: "Lansiranje", icon: Rocket, file: "vas-sajt.rs", title: "Sajt je uživo", text: "Provera na svim uređajima i objava. Sajt je spreman za posetioce.", View: LansView },
+  { id: "ideja", label: "Ideja", time: "[OVDE UNESI]", icon: Lightbulb, file: "plan.md", title: "Skica i plan", text: "Razgovaramo o cilju, publici i sadržaju. Nastaje jasna struktura stranica.", View: IdejaView },
+  { id: "kod", label: "Kod & UI", time: "[OVDE UNESI]", icon: Code2, file: "hero.tsx", title: "Dizajn postaje kod", text: "Skica se pretvara u čist, brz i prilagodljiv interfejs.", View: KodView },
+  { id: "objava", label: "Objava", time: "[OVDE UNESI]", icon: Rocket, file: "vas-sajt.rs", title: "Sajt je uživo", text: "Provera na svim uređajima i objava. Sajt je spreman za posetioce.", View: LansView },
 ];
-const DURATION = 6000;
+const DURATION = 4500;
 
 export function Blueprint() {
   const [active, setActive] = useState(0);
   const [paused, setPaused] = useState(false);
+  const [reduced, setReduced] = useState(false);
   useEffect(() => {
-    if (paused) return;
+    const m = window.matchMedia("(prefers-reduced-motion: reduce)");
+    setReduced(m.matches);
+    const on = (e: MediaQueryListEvent) => setReduced(e.matches);
+    m.addEventListener("change", on);
+    return () => m.removeEventListener("change", on);
+  }, []);
+  useEffect(() => {
+    if (paused || reduced) return;
     const t = setTimeout(() => setActive(a => (a + 1) % phases.length), DURATION);
     return () => clearTimeout(t);
-  }, [active, paused]);
+  }, [active, paused, reduced]);
   const p = phases[active] ?? phases[0]!;
   return (
     <section className="relative glass-card overflow-hidden p-5 sm:p-10" aria-labelledby="bp-title" onMouseEnter={() => setPaused(true)} onMouseLeave={() => setPaused(false)}>
@@ -69,21 +80,25 @@ export function Blueprint() {
           <h2 id="bp-title" className="text-2xl sm:text-4xl font-semibold tracking-tight">Od ideje do lansiranja <span className="text-gradient">u 3 koraka</span></h2>
           <div className="mt-8 grid gap-3" role="tablist" aria-label="Faze rada">
             {phases.map((ph, i) => (
-              <button key={ph.id} role="tab" aria-selected={i === active} onClick={() => { setActive(i); setPaused(true); }} className={`step-card ${i === active ? "is-active" : ""}`}>
+              <button key={ph.id} role="tab" aria-selected={i === active} onClick={() => setActive(i)} className={`step-card ${i === active ? "is-active" : ""}`}>
                 <div className="flex items-center gap-4">
                   <span className="step-icon"><ph.icon size={18} /></span>
-                  <div className="flex-1"><p className="step-num">KORAK 0{i + 1}</p><p className="font-semibold">{ph.label}</p>
+                  <div className="flex-1"><p className="step-num">KORAK 0{i + 1} · {ph.label} · {ph.time}</p><p className="font-semibold">{ph.label}</p>
                     {i === active && <p className="mt-1 text-sm text-muted-foreground fade-up">{ph.text}</p>}</div>
                 </div>
-                {i === active && !paused && <span key={`${active}-bar`} className="step-progress bar-grow" style={{ animationDuration: `${DURATION}ms`, animationTimingFunction: "linear" }} />}
+                {i === active && !paused && !reduced && <span key={`${active}-bar`} className="step-progress bar-grow" style={{ animationDuration: `${DURATION}ms`, animationTimingFunction: "linear" }} />}
               </button>
             ))}
           </div>
+          <p className="mt-4 text-[13px] text-foreground/70">Posle objave: izmene i podrška po dogovoru.</p>
         </div>
         <div className="stage flex flex-col lg:mt-[4.5rem] border-[color-mix(in_oklab,var(--brand-blue)_35%,transparent)] shadow-[0_0_60px_-20px_var(--brand-blue)]" role="tabpanel" aria-label={p.title}>
           <div className="stage-bar"><span className="bp-dot" /><span className="bp-dot" /><span className="bp-dot" /><span className="ml-2">{p.file}</span><span className="ml-auto font-medium text-foreground">{p.title}</span></div>
           <div key={p.id} className="fade-up flex-1 flex flex-col justify-center"><p.View /></div>
         </div>
+      </div>
+      <div className="relative mt-8 flex justify-center">
+        <Button asChild variant="glow" size="lg" className={active === 2 ? "shadow-glow" : ""}><Link to="/kontakt">Zatraži ponudu <ArrowRight /></Link></Button>
       </div>
     </section>
   );
