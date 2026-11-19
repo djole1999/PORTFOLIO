@@ -9,9 +9,9 @@ const icons = [Globe, Code2, MonitorSmartphone, Shapes];
 export const Route = createFileRoute("/usluge")({
   component: Usluge,
   head: () => ({ meta: [
-    { title: "Usluge — Đorđe Milenković" },
+    { title: "Usluge | Đorđe Milenković" },
     { name: "description", content: "Izrada poslovnih sajtova, web aplikacija, responsive dizajn i prilagođena digitalna rešenja." },
-    { property: "og:title", content: "Usluge — Đorđe Milenković" },
+    { property: "og:title", content: "Usluge | Đorđe Milenković" },
     { property: "og:description", content: "Izrada poslovnih sajtova, web aplikacija, responsive dizajn i prilagođena digitalna rešenja." },
     { property: "og:type", content: "website" },
     { name: "twitter:card", content: "summary_large_image" },
@@ -21,7 +21,7 @@ export const Route = createFileRoute("/usluge")({
 function Usluge() {
   return (
     <div className="wrap py-12 sm:py-20">
-      <PageHeading kicker="Usluge" title={<>Dobra ideja zaslužuje <span className="text-gradient">dobro rešenje.</span></>} intro="Od prvog koncepta do poslednjeg detalja — digitalna rešenja koja imaju smisla." />
+      <PageHeading kicker="Usluge" title={<>Dobra ideja zaslužuje <span className="text-gradient">dobro rešenje.</span></>} intro="Od prvog koncepta do poslednjeg detalja | digitalna rešenja koja imaju smisla." />
       <div className="grid sm:grid-cols-2 gap-6">
         {services.map((s, i) => { const Icon = icons[i] ?? Globe; return (
           <article key={s.name} className="glass-card p-6 fade-up">

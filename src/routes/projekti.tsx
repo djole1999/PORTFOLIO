@@ -6,10 +6,10 @@ import { projects } from "@/lib/site-data";
 export const Route = createFileRoute("/projekti")({
   component: Projekti,
   head: () => ({ meta: [
-    { title: "Projekti — Đorđe Milenković" },
-    { name: "description", content: "Atelier, Gold Vet i Tattoo Studio Lupus — demo i lični projekti sa pregledom uživo." },
-    { property: "og:title", content: "Projekti — Đorđe Milenković" },
-    { property: "og:description", content: "Atelier, Gold Vet i Tattoo Studio Lupus — demo i lični projekti sa pregledom uživo." },
+    { title: "Projekti | Đorđe Milenković" },
+    { name: "description", content: "Atelier, Gold Vet i Tattoo Studio Lupus: demo i lični projekti sa pregledom uživo." },
+    { property: "og:title", content: "Projekti | Đorđe Milenković" },
+    { property: "og:description", content: "Atelier, Gold Vet i Tattoo Studio Lupus: demo i lični projekti sa pregledom uživo." },
     { property: "og:type", content: "website" },
     { name: "twitter:card", content: "summary_large_image" },
   ] }),

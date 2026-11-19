@@ -1,3 +1,4 @@
+import { Logo } from "@/components/logo";
 import { Link } from "@tanstack/react-router";
 import { useEffect, useState, type ReactNode } from "react";
 import { ArrowRight, Menu, QrCode, X } from "lucide-react";
@@ -30,7 +31,7 @@ export function SiteShell({ children }: { children: ReactNode }) {
     <div className="site-bg min-h-screen flex flex-col">
       <header className="sticky top-0 z-40 border-b border-border/60 bg-background/70 backdrop-blur-xl">
         <div className="wrap flex h-16 items-center justify-between gap-4">
-          <Link to="/" className="monogram" aria-label="Đorđe Milenković — početna">ĐM</Link>
+          <Link to="/" className="monogram" aria-label="Đorđe Milenković, početna"><Logo /></Link>
           <nav className="hidden md:flex items-center gap-1" aria-label="Glavna navigacija">
             {nav.map(n => <Link key={n.to} to={n.to} activeOptions={{ exact: true }} className="nav-link" activeProps={{ className: "nav-link is-active" }}>{n.label}</Link>)}
           </nav>
@@ -53,7 +54,6 @@ export function SiteShell({ children }: { children: ReactNode }) {
       <footer className="border-t border-border/60">
         <div className="wrap flex flex-col sm:flex-row gap-3 justify-between py-8 text-sm text-muted-foreground">
           <p>© 2026 Đorđe Milenković. Sva prava zadržana.</p>
-          <Link to="/kontakt" className="hover:text-foreground">Kontakt →</Link>
         </div>
       </footer>
     </div>

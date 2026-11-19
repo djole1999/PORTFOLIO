@@ -13,7 +13,7 @@ export const projects = [
 export const services = [
   { name: "Izrada poslovnih sajtova", description: "Jasno predstavite svoj posao kroz moderan sajt koji povezuje dobar dizajn i funkcionalnost.", gets: ["Moderan dizajn prilagođen vašem brendu", "Jasna struktura i sadržaj", "Brzo učitavanje"] },
   { name: "Izrada web aplikacija", description: "Od ideje do funkcionalnog rešenja, prilagođenog vašim potrebama i načinu rada.", gets: ["Rešenje po meri vašeg procesa", "Pregledan i jednostavan interfejs", "Prostor za kasniju nadogradnju"] },
-  { name: "Responsive web dizajn", description: "Pažljivo oblikovano iskustvo na svakom ekranu — od telefona do računara.", gets: ["Ispravan prikaz na telefonu, tabletu i računaru", "Dugmad laka za dodir", "Čitljiv tekst na svakom ekranu"] },
+  { name: "Responsive web dizajn", description: "Pažljivo oblikovano iskustvo na svakom ekranu, od telefona do računara.", gets: ["Ispravan prikaz na telefonu, tabletu i računaru", "Dugmad laka za dodir", "Čitljiv tekst na svakom ekranu"] },
   { name: "Prilagođena digitalna rešenja", description: "Jedinstven pristup vašoj ideji, bez nepotrebne složenosti i gotovih ograničenja.", gets: ["Lični dogovor oko svake funkcije", "Bez nepotrebne složenosti", "Podrška kroz ceo proces"] },
 ];
 

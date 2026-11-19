@@ -9,5 +9,5 @@ export const contactSchema = z.object({
 
 export function createContactMailto(input: unknown) {
   const data = contactSchema.parse(input);
-  return `mailto:${CONTACT_EMAIL}?subject=${encodeURIComponent(`Upit za saradnju — ${data.name}`)}&body=${encodeURIComponent(`Ime: ${data.name}\nEmail: ${data.email}\n\n${data.message}`)}`;
+  return `mailto:${CONTACT_EMAIL}?subject=${encodeURIComponent(`Upit za saradnju: ${data.name}`)}&body=${encodeURIComponent(`Ime: ${data.name}\nEmail: ${data.email}\n\n${data.message}`)}`;
 }

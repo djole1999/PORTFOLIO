@@ -9,9 +9,9 @@ import { CONTACT_EMAIL, CONTACT_PHONE, CONTACT_PHONE_HREF } from "@/lib/site-dat
 export const Route = createFileRoute("/kontakt")({
   component: Kontakt,
   head: () => ({ meta: [
-    { title: "Kontakt — Đorđe Milenković" },
+    { title: "Kontakt | Đorđe Milenković" },
     { name: "description", content: "Imate ideju? Pišite ili pozovite Đorđa Milenkovića za izradu sajta ili web aplikacije." },
-    { property: "og:title", content: "Kontakt — Đorđe Milenković" },
+    { property: "og:title", content: "Kontakt | Đorđe Milenković" },
     { property: "og:description", content: "Imate ideju? Pišite ili pozovite Đorđa Milenkovića za izradu sajta ili web aplikacije." },
     { property: "og:type", content: "website" },
     { name: "twitter:card", content: "summary_large_image" },

@@ -82,10 +82,10 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
     meta: [
       { charSet: "utf-8" },
       { name: "viewport", content: "width=device-width, initial-scale=1" },
-      { title: "Đorđe Milenković — Web developer" },
-      { name: "description", content: "Portfolio Đorđa Milenkovića — moderni sajtovi i web aplikacije." },
+      { title: "Đorđe Milenković | Web developer" },
+      { name: "description", content: "Portfolio Đorđa Milenkovića: moderni sajtovi i web aplikacije." },
       { name: "author", content: "Đorđe Milenković" },
-      { property: "og:title", content: "Đorđe Milenković — Web developer" },
+      { property: "og:title", content: "Đorđe Milenković | Web developer" },
       { property: "og:description", content: "Moderni sajtovi i web aplikacije. Pogledajte lične i demonstracione projekte." },
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary_large_image" },

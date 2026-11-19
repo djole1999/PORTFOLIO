@@ -13,9 +13,9 @@ const steps = [
 export const Route = createFileRoute("/o-meni")({
   component: OMeni,
   head: () => ({ meta: [
-    { title: "O meni — Đorđe Milenković" },
+    { title: "O meni | Đorđe Milenković" },
     { name: "description", content: "Iza svakog detalja, lični pristup. Način rada i alati koje Đorđe Milenković koristi." },
-    { property: "og:title", content: "O meni — Đorđe Milenković" },
+    { property: "og:title", content: "O meni | Đorđe Milenković" },
     { property: "og:description", content: "Iza svakog detalja, lični pristup. Način rada i alati koje Đorđe Milenković koristi." },
     { property: "og:type", content: "website" },
     { name: "twitter:card", content: "summary_large_image" },
