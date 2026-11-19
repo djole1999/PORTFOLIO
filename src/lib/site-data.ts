@@ -10,11 +10,70 @@ export const projects = [
   { name: "Tattoo Studio Lupus", description: "Sajt za lokalni tattoo studio", status: "U izradi", tech: ["React", "Tailwind CSS", "Vercel"], image: lupus.url, url: "https://lupus-seven.vercel.app/" },
 ];
 
-export const services = [
-  { name: "Izrada poslovnih sajtova", description: "Jasno predstavite svoj posao kroz moderan sajt koji povezuje dobar dizajn i funkcionalnost.", gets: ["Moderan dizajn prilagođen vašem brendu", "Jasna struktura i sadržaj", "Brzo učitavanje"] },
-  { name: "Izrada web aplikacija", description: "Od ideje do funkcionalnog rešenja, prilagođenog vašim potrebama i načinu rada.", gets: ["Rešenje po meri vašeg procesa", "Pregledan i jednostavan interfejs", "Prostor za kasniju nadogradnju"] },
-  { name: "Responsive web dizajn", description: "Pažljivo oblikovano iskustvo na svakom ekranu, od telefona do računara.", gets: ["Ispravan prikaz na telefonu, tabletu i računaru", "Dugmad laka za dodir", "Čitljiv tekst na svakom ekranu"] },
-  { name: "Prilagođena digitalna rešenja", description: "Jedinstven pristup vašoj ideji, bez nepotrebne složenosti i gotovih ograničenja.", gets: ["Lični dogovor oko svake funkcije", "Bez nepotrebne složenosti", "Podrška kroz ceo proces"] },
+export type Service = { name: string; problem: string; outcome: string; forWho: string; timeline: string; price: string; example: string | null; gets: string[] };
+
+export const services: Service[] = [
+  {
+    name: "Sajt za lokalnu firmu",
+    problem: "Ljudi vas traže na internetu i ne nalaze ništa, ili nalaze samo staru Facebook stranicu.",
+    outcome: "Dobijate sajt na kome kupac za pola minuta vidi šta radite, gde ste i kako da vas pozove.",
+    forWho: "Ordinacije, saloni, servisi, zanatlije i lokalne radnje",
+    timeline: "[OVDE UNESI rok za sajt firme]",
+    price: "[OVDE UNESI početnu cenu sajta firme]",
+    example: "https://responsive-magic-nu.vercel.app/",
+    gets: [
+      "Do [OVDE UNESI broj] stranica: početna, usluge, o nama, kontakt",
+      "Dugme koje na telefonu odmah poziva vaš broj",
+      "Mapa sa vašom lokacijom i radnim vremenom",
+      "Forma za upit koja stiže na vaš email",
+      "Prikaz proveren na telefonu, tabletu i računaru pre predaje",
+    ],
+  },
+  {
+    name: "Sajt sa ponudom i cenovnikom",
+    problem: "Svakog dana odgovarate na iste poruke: koliko košta, šta je u ponudi, imate li slobodan termin.",
+    outcome: "Dobijate sajt na kome je cela ponuda sa cenama, pa stižu upiti ljudi koji su već odlučili.",
+    forWho: "Firme sa više usluga ili proizvoda, na primer studiji, restorani i turističke agencije",
+    timeline: "[OVDE UNESI rok za sajt sa ponudom]",
+    price: "[OVDE UNESI početnu cenu sajta sa ponudom]",
+    example: "https://lupus-seven.vercel.app/",
+    gets: [
+      "Stranica sa svim uslugama ili proizvodima i cenama",
+      "Galerija radova sa do [OVDE UNESI broj] fotografija",
+      "Forma za upit sa izborom usluge",
+      "Izmene cena i teksta [OVDE UNESI koliko puta ili koliko dugo] bez doplate",
+    ],
+  },
+  {
+    name: "Web aplikacija po meri",
+    problem: "Rezervacije, porudžbine ili evidenciju vodite u svesci, Excelu i porukama, pa se stvari gube.",
+    outcome: "Dobijate jednostavan program u pregledaču koji radi tačno ono što vašem poslu treba.",
+    forWho: "Firme koje svakodnevno ručno vode termine, klijente ili zalihe",
+    timeline: "[OVDE UNESI rok za web aplikaciju]",
+    price: "[OVDE UNESI početnu cenu web aplikacije]",
+    example: null,
+    gets: [
+      "Pisani spisak funkcija koji zajedno odobrimo pre početka rada",
+      "Radi na telefonu i računaru, bez instalacije",
+      "Izrada u React i TypeScript tehnologiji",
+      "Obuka za vas i zaposlene: [OVDE UNESI trajanje obuke]",
+    ],
+  },
+  {
+    name: "Redizajn postojećeg sajta",
+    problem: "Imate sajt, ali izgleda zastarelo, ne radi dobro na telefonu i niko vam se preko njega ne javlja.",
+    outcome: "Dobijate isti sadržaj u novom, preglednom obliku, na vašem postojećem domenu.",
+    forWho: "Firme koje već imaju sajt i domen",
+    timeline: "[OVDE UNESI rok za redizajn]",
+    price: "[OVDE UNESI početnu cenu redizajna]",
+    example: "https://template-mocha-one.vercel.app/",
+    gets: [
+      "Pisani pregled šta ne radi na sadašnjem sajtu, pre početka",
+      "Prenos postojećih tekstova i slika",
+      "Novi sajt na vašem postojećem domenu",
+      "Stari linkovi preusmereni na nove stranice",
+    ],
+  },
 ];
 
 export const tools = ["HTML", "CSS", "JavaScript", "TypeScript", "React", "Tailwind CSS", "Git", "Figma", "Vercel"];
