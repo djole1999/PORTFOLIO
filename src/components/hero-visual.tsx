@@ -1,4 +1,3 @@
-import { ProfilePhoto } from "@/components/profile-photo";
 
 function Cube({ x, y, s, cls }: { x: number; y: number; s: number; cls: string }) {
   const h = s * 0.58;
@@ -26,7 +25,6 @@ export function HeroVisual() {
         <Cube x={110} y={175} s={58} cls="float-b" />
         <Cube x={320} y={235} s={48} cls="float-c" />
       </svg>
-      <div className="absolute bottom-0 left-0"><ProfilePhoto /></div>
     </div>
   );
 }

@@ -1,7 +1,5 @@
 import { useEffect, useState } from "react";
-import { Link } from "@tanstack/react-router";
-import { ArrowRight, Lightbulb, Code2, Rocket, Check, Lock, Gauge, Globe } from "lucide-react";
-import { Button } from "@/components/ui/button";
+import { Lightbulb, Code2, Rocket, Check, Lock, Gauge, Globe } from "lucide-react";
 
 const IdejaView = () => (
   <div className="p-5 space-y-3">
@@ -65,8 +63,8 @@ export function Blueprint() {
   return (
     <section className="relative glass-card overflow-hidden p-5 sm:p-10" aria-labelledby="bp-title" onMouseEnter={() => setPaused(true)} onMouseLeave={() => setPaused(false)}>
       <div className="pointer-events-none absolute -top-32 -right-32 h-72 w-72 rounded-full blur-3xl glow-pulse" style={{ background: "color-mix(in oklab, var(--brand-violet) 30%, transparent)" }} />
-      <div className="relative grid lg:grid-cols-[1fr_1.15fr] gap-8 lg:gap-12 items-start">
-        <div>
+      <div className="relative grid lg:grid-cols-[1fr_1.15fr] gap-8 lg:gap-12 items-stretch">
+        <div className="flex flex-col">
           <p className="kicker">Kako nastaje sajt</p>
           <h2 id="bp-title" className="text-2xl sm:text-4xl font-semibold tracking-tight">Od ideje do lansiranja <span className="text-gradient">u 3 koraka</span></h2>
           <div className="mt-8 grid gap-3" role="tablist" aria-label="Faze rada">
@@ -81,11 +79,10 @@ export function Blueprint() {
               </button>
             ))}
           </div>
-          <Button asChild variant="glow" size="lg" className="mt-8"><Link to="/projekti">Pogledaj projekte <ArrowRight /></Link></Button>
         </div>
-        <div className="stage" role="tabpanel" aria-label={p.title}>
+        <div className="stage flex flex-col lg:mt-[4.5rem] border-[color-mix(in_oklab,var(--brand-blue)_35%,transparent)] shadow-[0_0_60px_-20px_var(--brand-blue)]" role="tabpanel" aria-label={p.title}>
           <div className="stage-bar"><span className="bp-dot" /><span className="bp-dot" /><span className="bp-dot" /><span className="ml-2">{p.file}</span><span className="ml-auto font-medium text-foreground">{p.title}</span></div>
-          <div key={p.id} className="fade-up"><p.View /></div>
+          <div key={p.id} className="fade-up flex-1 flex flex-col justify-center"><p.View /></div>
         </div>
       </div>
     </section>
