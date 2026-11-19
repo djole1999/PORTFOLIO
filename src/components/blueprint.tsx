@@ -14,7 +14,7 @@ const phases = [
 
 export function Blueprint() {
   const [active, setActive] = useState(0);
-  const p = phases[active];
+  const p = phases[active] ?? phases[0]!;
   return (
     <section className="glass-card p-5 sm:p-8" aria-labelledby="bp-title">
       <p className="kicker">Kako nastaje sajt</p>
