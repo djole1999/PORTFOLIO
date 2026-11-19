@@ -30,6 +30,7 @@ use the editor.
 <!-- LOVABLE:END -->
 
 ## Portfolio architecture
-- Keep the portfolio as one section-based index route because the brief explicitly requests navigation to page sections.
+- Each portfolio section is its own route (/, /projekti, /usluge, /o-meni, /kontakt) sharing SiteShell from __root, because the brief requires a short home page and separate pages.
+- Shared project/service/contact data lives in src/lib/site-data*.ts so pages never duplicate content.
 - Keep contact validation and mailto creation in a browser-safe shared module; the form opens an email draft and must never claim server delivery.
 - Use actual website captures through CDN asset pointers for project previews, not invented representations of the linked work.

@@ -10,33 +10,73 @@
 
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
+import { Route as KontaktRouteImport } from './routes/kontakt'
+import { Route as OMeniRouteImport } from './routes/o-meni'
+import { Route as ProjektiRouteImport } from './routes/projekti'
+import { Route as UslugeRouteImport } from './routes/usluge'
 
 const IndexRoute = IndexRouteImport.update({
   id: '/',
   path: '/',
   getParentRoute: () => rootRouteImport,
 } as any)
+const KontaktRoute = KontaktRouteImport.update({
+  id: '/kontakt',
+  path: '/kontakt',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const OMeniRoute = OMeniRouteImport.update({
+  id: '/o-meni',
+  path: '/o-meni',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ProjektiRoute = ProjektiRouteImport.update({
+  id: '/projekti',
+  path: '/projekti',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const UslugeRoute = UslugeRouteImport.update({
+  id: '/usluge',
+  path: '/usluge',
+  getParentRoute: () => rootRouteImport,
+} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
+  '/kontakt': typeof KontaktRoute
+  '/o-meni': typeof OMeniRoute
+  '/projekti': typeof ProjektiRoute
+  '/usluge': typeof UslugeRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
+  '/kontakt': typeof KontaktRoute
+  '/o-meni': typeof OMeniRoute
+  '/projekti': typeof ProjektiRoute
+  '/usluge': typeof UslugeRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
+  '/kontakt': typeof KontaktRoute
+  '/o-meni': typeof OMeniRoute
+  '/projekti': typeof ProjektiRoute
+  '/usluge': typeof UslugeRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/'
+  fullPaths: '/' | '/kontakt' | '/o-meni' | '/projekti' | '/usluge'
   fileRoutesByTo: FileRoutesByTo
-  to: '/'
-  id: '__root__' | '/'
+  to: '/' | '/kontakt' | '/o-meni' | '/projekti' | '/usluge'
+  id: '__root__' | '/' | '/kontakt' | '/o-meni' | '/projekti' | '/usluge'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
+  KontaktRoute: typeof KontaktRoute
+  OMeniRoute: typeof OMeniRoute
+  ProjektiRoute: typeof ProjektiRoute
+  UslugeRoute: typeof UslugeRoute
 }
 
 declare module '@tanstack/react-router' {
@@ -48,11 +88,43 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof IndexRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/kontakt': {
+      id: '/kontakt'
+      path: '/kontakt'
+      fullPath: '/kontakt'
+      preLoaderRoute: typeof KontaktRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/o-meni': {
+      id: '/o-meni'
+      path: '/o-meni'
+      fullPath: '/o-meni'
+      preLoaderRoute: typeof OMeniRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/projekti': {
+      id: '/projekti'
+      path: '/projekti'
+      fullPath: '/projekti'
+      preLoaderRoute: typeof ProjektiRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/usluge': {
+      id: '/usluge'
+      path: '/usluge'
+      fullPath: '/usluge'
+      preLoaderRoute: typeof UslugeRouteImport
+      parentRoute: typeof rootRouteImport
+    }
   }
 }
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
+  KontaktRoute: KontaktRoute,
+  OMeniRoute: OMeniRoute,
+  ProjektiRoute: ProjektiRoute,
+  UslugeRoute: UslugeRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
