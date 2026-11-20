@@ -17,4 +17,5 @@ export const services = [
   { name: "Prilagođena digitalna rešenja", description: "Jedinstven pristup vašoj ideji, bez nepotrebne složenosti i gotovih ograničenja.", gets: ["Lični dogovor oko svake funkcije", "Bez nepotrebne složenosti", "Podrška kroz ceo proces"] },
 ];
 
-export const tools = ["HTML", "CSS", "JavaScript", "TypeScript", "React", "Tailwind CSS", "Git", "Figma", "Vercel"];
+export const toolsUsed = ["Lovable", "Bubble", "Supabase", "Vercel", "GitHub"];
+export const projectTech = ["React", "TypeScript", "Tailwind CSS"];
