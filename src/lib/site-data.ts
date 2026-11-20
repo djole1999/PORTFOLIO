@@ -11,10 +11,10 @@ export const projects = [
 ];
 
 export const services = [
-  { name: "Izrada poslovnih sajtova", description: "Jasno predstavite svoj posao kroz moderan sajt koji povezuje dobar dizajn i funkcionalnost.", gets: ["Moderan dizajn prilagođen vašem brendu", "Jasna struktura i sadržaj", "Brzo učitavanje"] },
-  { name: "Izrada web aplikacija", description: "Od ideje do funkcionalnog rešenja, prilagođenog vašim potrebama i načinu rada.", gets: ["Rešenje po meri vašeg procesa", "Pregledan i jednostavan interfejs", "Prostor za kasniju nadogradnju"] },
-  { name: "Responsive web dizajn", description: "Pažljivo oblikovano iskustvo na svakom ekranu, od telefona do računara.", gets: ["Ispravan prikaz na telefonu, tabletu i računaru", "Dugmad laka za dodir", "Čitljiv tekst na svakom ekranu"] },
-  { name: "Prilagođena digitalna rešenja", description: "Jedinstven pristup vašoj ideji, bez nepotrebne složenosti i gotovih ograničenja.", gets: ["Lični dogovor oko svake funkcije", "Bez nepotrebne složenosti", "Podrška kroz ceo proces"] },
+  { name: "Izrada poslovnih sajtova", description: "Nemate sajt ili vam je star? Dobijate stranicu na kojoj klijenti odmah vide šta radite, gde ste i kako da vas kontaktiraju. Za frizerske salone, tattoo studije, restorane, zanatlije, teretane i male firme.", gets: ["Kontakt forma i dugme za poziv ili Viber", "Mapa sa lokacijom vašeg lokala", "Galerija radova i cenovnik"] },
+  { name: "Izrada web aplikacija", description: "Imate ideju za alat koji ne postoji gotov? Dobijate aplikaciju koja radi tačno ono što vama treba, bez funkcija koje nećete koristiti.", gets: ["Pristup sa telefona i računara", "Admin panel za izmenu sadržaja", "Mogućnost kasnije nadogradnje"] },
+  { name: "Sajt koji radi na telefonu", description: "Većina vaših klijenata vas traži sa telefona? Dobijate sajt na kom se sve vidi i radi jednim dodirom.", gets: ["Dugme za poziv jednim dodirom", "Čitljiv tekst bez zumiranja", "Meni lak za korišćenje na telefonu"] },
+  { name: "Prilagođena digitalna rešenja", description: "Treba vam nešto što ne staje u standardni sajt? Dobijate rešenje po meri za vaš način rada.", gets: ["Rezervacije termina ili porudžbine", "Prijava korisnika i evidencija", "Dogovor oko svake funkcije pre početka rada"] },
 ];
 
 export const toolsUsed = ["Lovable", "Bubble", "Supabase", "Vercel", "GitHub"];

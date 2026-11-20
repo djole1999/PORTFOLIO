@@ -10,9 +10,9 @@ export const Route = createFileRoute("/usluge")({
   component: Usluge,
   head: () => ({ meta: [
     { title: "Usluge | Đorđe Milenković" },
-    { name: "description", content: "Izrada poslovnih sajtova, web aplikacija, responsive dizajn i prilagođena digitalna rešenja." },
+    { name: "description", content: "Izrada poslovnih sajtova, web aplikacija, sajtova prilagođenih telefonu i prilagođenih digitalnih rešenja." },
     { property: "og:title", content: "Usluge | Đorđe Milenković" },
-    { property: "og:description", content: "Izrada poslovnih sajtova, web aplikacija, responsive dizajn i prilagođena digitalna rešenja." },
+    { property: "og:description", content: "Izrada poslovnih sajtova, web aplikacija, sajtova prilagođenih telefonu i prilagođenih digitalnih rešenja." },
     { property: "og:type", content: "website" },
     { name: "twitter:card", content: "summary_large_image" },
   ] }),
