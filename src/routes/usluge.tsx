@@ -21,7 +21,7 @@ export const Route = createFileRoute("/usluge")({
 function Usluge() {
   return (
     <div className="wrap py-12 sm:py-20">
-      <PageHeading kicker="Usluge" title={<>Dobra ideja zaslužuje <span className="text-gradient">dobro rešenje.</span></>} intro="Od prvog koncepta do poslednjeg detalja | digitalna rešenja koja imaju smisla." />
+      <PageHeading kicker="Usluge" title={<>Dobra ideja zaslužuje <span className="text-gradient">dobro rešenje.</span></>} />
       <div className="grid sm:grid-cols-2 gap-6">
         {services.map((s, i) => { const Icon = icons[i] ?? Globe; return (
           <article key={s.name} className="glass-card p-6 fade-up">
