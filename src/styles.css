@@ -91,8 +91,6 @@
 .photo-frame { position: relative; height: 150px; width: 150px; border-radius: 9999px; padding: 3px; background-image: var(--gradient-brand); box-shadow: 0 0 80px -10px color-mix(in oklab, var(--brand-violet) 70%, transparent); }
 .photo-frame > img, .photo-initials { border-radius: 9999px; background: var(--card); }
 .photo-initials { display: grid; place-items: center; height: 100%; width: 100%; font-size: 40px; font-weight: 700; color: var(--muted-foreground); }
-.photo-btn { position: absolute; right: 14px; bottom: 14px; height: 44px; width: 44px; display: grid; place-items: center; border-radius: 9999px; background: var(--background); border: 1px solid var(--border); color: var(--foreground); transition: transform .2s; }
-.photo-btn:hover { transform: scale(1.08); border-color: var(--brand-violet); }
 .tag { display: inline-flex; padding: 4px 10px; border-radius: 9999px; font-size: 12px; border: 1px solid var(--border); color: var(--muted-foreground); }
 .form-control { width: 100%; min-height: 50px; padding: 12px 14px; border-radius: 10px; background: var(--background); border: 1px solid var(--input); color: var(--foreground); font-size: 16px; }
 .form-control:focus { outline: none; border-color: var(--brand-violet); box-shadow: 0 0 0 3px color-mix(in oklab, var(--brand-violet) 25%, transparent); }
