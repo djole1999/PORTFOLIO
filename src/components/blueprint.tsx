@@ -20,15 +20,15 @@ const steps = [
     n: "03",
     label: "Objava",
     icon: Rocket,
-    text: "Sajt ide na internet na vašoj adresi, sa uključenom zaštitom (HTTPS). Ostajem dostupan za izmene i dopune po dogovoru.",
+    text: "Sajt ide na internet na vašoj adresi, sa uključenom zaštitom (HTTPS). Posle objave sam dostupan za izmene.",
   },
 ];
 
 function Connector() {
   return (
-    <div className="hidden md:flex w-12 shrink-0 items-center gap-1 px-1" aria-hidden="true">
-      <span className="h-px flex-1 bg-border" />
-      <ArrowRight size={14} className="text-brand-blue/70" />
+    <div className="hidden md:flex w-14 shrink-0 items-center gap-1 px-1" aria-hidden="true">
+      <span className="h-px flex-1 bg-gradient-to-r from-border to-brand-blue/60" />
+      <ArrowRight size={18} className="text-brand-blue" />
     </div>
   );
 }
@@ -36,7 +36,7 @@ function Connector() {
 export function Blueprint() {
   return (
     <section className="py-4 sm:py-8" aria-labelledby="bp-title">
-      <div className="max-w-2xl fade-up">
+      <div className="mx-auto max-w-2xl text-center fade-up">
         <p className="kicker">Kako nastaje sajt</p>
         <h2 id="bp-title" className="text-2xl sm:text-4xl font-semibold tracking-tight">
           Od ideje do objave <span className="text-gradient">u 3 koraka</span>
@@ -64,7 +64,7 @@ export function Blueprint() {
         })}
       </div>
 
-      <div className="mt-12 sm:mt-16 flex justify-center">
+      <div className="mt-8 sm:mt-11 flex justify-center">
         <Button asChild variant="glow" size="lg">
           <Link to="/kontakt">Zatraži ponudu <ArrowRight /></Link>
         </Button>
