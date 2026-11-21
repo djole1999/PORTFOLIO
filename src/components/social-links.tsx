@@ -10,12 +10,15 @@ const paths = {
 export function SocialLinks() {
   const { ref, cls } = useReveal<HTMLDivElement>();
   return (
-    <div ref={ref} className={"mt-8 sm:mt-11 flex justify-center gap-4" + cls}>
-      {SOCIAL_LINKS.map((s, i) => (
-        <a key={s.id} href={s.href} target="_blank" rel="noopener noreferrer" aria-label={s.label} className="social-btn" style={{ ["--i" as string]: i }}>
-          <svg viewBox="0 0 24 24" width="22" height="22" fill="currentColor" aria-hidden="true"><path d={paths[s.id]} /></svg>
-        </a>
-      ))}
+    <div ref={ref} className={"mt-14 flex flex-col items-center gap-4" + cls}>
+      <p className="social-label">Pišite mi direktno</p>
+      <div className="social-pill">
+        {SOCIAL_LINKS.map((s, i) => (
+          <a key={s.id} href={s.href} target="_blank" rel="noopener noreferrer" aria-label={s.label} className="social-btn" style={{ ["--i" as string]: i }}>
+            <svg viewBox="0 0 24 24" width="22" height="22" fill="currentColor" aria-hidden="true"><path d={paths[s.id]} /></svg>
+          </a>
+        ))}
+      </div>
     </div>
   );
 }
