@@ -88,8 +88,6 @@
 .page-title { font-size: clamp(2.2rem, 6vw, 3.8rem); line-height: 1.05; font-weight: 700; letter-spacing: -0.03em; }
 .glass-card { background: color-mix(in oklab, var(--card) 70%, transparent); border: 1px solid var(--border); border-radius: 20px; backdrop-filter: blur(12px); }
 .glass-card:hover { border-color: color-mix(in oklab, var(--brand-violet) 35%, var(--border)); }
-.photo-frame { position: relative; height: 150px; width: 150px; border-radius: 9999px; padding: 3px; background-image: var(--gradient-brand); box-shadow: 0 0 80px -10px color-mix(in oklab, var(--brand-violet) 70%, transparent); }
-.photo-frame > img, .photo-initials { border-radius: 9999px; background: var(--card); }
 .photo-initials { display: grid; place-items: center; height: 100%; width: 100%; font-size: 40px; font-weight: 700; color: var(--muted-foreground); }
 .tag { display: inline-flex; padding: 4px 10px; border-radius: 9999px; font-size: 12px; border: 1px solid var(--border); color: var(--muted-foreground); }
 .chip { display: inline-flex; align-items: center; padding: 10px 18px; border-radius: 9999px; font-size: 15px; line-height: 1.2; border: 1px solid var(--border); color: var(--muted-foreground); transition: transform .25s ease-out, border-color .25s ease-out, box-shadow .25s ease-out, color .25s ease-out; }
@@ -137,7 +135,19 @@ textarea.form-control { min-height: 140px; resize: vertical; }
 .fade-up { animation: fadeUp .5s ease both; }
 @keyframes fadeUp { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: none; } }
 @media (prefers-reduced-motion: reduce) { .fade-up { animation: none; } html { scroll-behavior: auto; } }
-@media (max-width: 640px) { .photo-frame { height: 120px; width: 120px; } }
+.photo-frame { position: relative; isolation: isolate; height: 170px; width: 170px; border-radius: 9999px; padding: 7px; animation: photo-in .6s ease-out both; }
+.photo-frame::before { content: ""; position: absolute; inset: -14px; border-radius: 9999px; background: radial-gradient(circle, color-mix(in oklab, var(--brand-violet) 55%, transparent), transparent 70%); opacity: .7; transition: opacity .3s ease-out; z-index: -1; }
+.photo-frame:hover::before { opacity: 1; }
+.photo-ring { position: absolute; inset: 0; border-radius: 9999px; background: conic-gradient(from 0deg, var(--brand-violet), var(--brand-blue), var(--brand-violet)); -webkit-mask: radial-gradient(farthest-side, transparent calc(100% - 3.5px), #000 calc(100% - 3px)); mask: radial-gradient(farthest-side, transparent calc(100% - 3.5px), #000 calc(100% - 3px)); animation: photo-spin 8s linear infinite; }
+.photo-inner { position: relative; height: 100%; width: 100%; border-radius: 9999px; overflow: hidden; background: radial-gradient(circle, #1a1033, var(--background)); }
+.photo-img { height: 100%; width: 100%; object-fit: cover; object-position: 50% 35%; }
+.photo-tint { position: absolute; inset: 0; background: linear-gradient(135deg, var(--brand-violet), var(--brand-blue)); mix-blend-mode: soft-light; opacity: .32; -webkit-mask: radial-gradient(ellipse 34% 40% at 50% 42%, transparent 60%, #000 100%); mask: radial-gradient(ellipse 34% 40% at 50% 42%, transparent 60%, #000 100%); }
+.photo-vignette { position: absolute; inset: 0; background: radial-gradient(circle at 50% 42%, transparent 55%, color-mix(in oklab, var(--background) 70%, transparent) 100%), linear-gradient(to bottom, transparent 72%, color-mix(in oklab, var(--background) 75%, transparent)); }
+.photo-inner > .photo-initials { background: var(--card); }
+@keyframes photo-in { from { opacity: 0; transform: scale(.95); } to { opacity: 1; transform: none; } }
+@keyframes photo-spin { to { transform: rotate(360deg); } }
+@media (max-width: 640px) { .photo-frame { height: 120px; width: 120px; padding: 6px; } }
+@media (prefers-reduced-motion: reduce) { .photo-frame, .photo-ring { animation: none; } .photo-frame::before { transition: none; } }
 
 @keyframes float-y { 0%,100% { transform: translateY(0); } 50% { transform: translateY(-12px); } }
 @keyframes pulse-glow { 0%,100% { opacity: .55; } 50% { opacity: 1; } }
