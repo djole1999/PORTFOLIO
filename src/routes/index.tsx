@@ -4,6 +4,7 @@ import { Button } from "@/components/ui/button";
 import { ProfilePhoto } from "@/components/profile-photo";
 import { Blueprint } from "@/components/blueprint";
 import { HeroVisual } from "@/components/hero-visual";
+import { CircuitBg } from "@/components/circuit-bg";
 
 export const Route = createFileRoute("/")({
   component: Index,
@@ -20,6 +21,7 @@ export const Route = createFileRoute("/")({
 function Index() {
   return (
     <div className="wrap py-8 sm:py-14 space-y-8 sm:space-y-12">
+      <CircuitBg />
       <section className="grid md:grid-cols-[1.4fr_1fr] gap-10 items-center fade-up" aria-labelledby="hero-heading">
         <div className="order-2 md:order-1 flex flex-col sm:flex-row items-center gap-6 sm:gap-10 text-center sm:text-left"><div className="shrink-0"><ProfilePhoto /></div><div>
           <p className="kicker">Web Developer & Dizajner</p>
