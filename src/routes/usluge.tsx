@@ -1,7 +1,6 @@
-import { createFileRoute, Link } from "@tanstack/react-router";
-import { ArrowRight, Check, Clock, Code2, Globe, Layers, SlidersHorizontal, Wrench } from "lucide-react";
+import { createFileRoute } from "@tanstack/react-router";
+import { Check, Clock, Code2, Globe, Layers, SlidersHorizontal, Wrench } from "lucide-react";
 import { PageHeading } from "@/components/site-shell";
-import { Button } from "@/components/ui/button";
 import { services } from "@/lib/site-data";
 import { useReveal } from "@/hooks/use-reveal";
 
@@ -54,10 +53,7 @@ function Usluge() {
             </article>
           ))}
         </div>
-        <div className="mt-10 flex flex-col items-center gap-4 text-center">
-          <p className="text-muted-foreground">Ponudu dobijate unapred i bez obaveze.</p>
-          <Button asChild variant="glow" size="lg"><Link to="/kontakt">Zatraži ponudu <ArrowRight /></Link></Button>
-        </div>
+        <p className="mt-10 text-center text-muted-foreground">Ponudu dobijate unapred i bez obaveze.</p>
       </section>
     </div>
   );
