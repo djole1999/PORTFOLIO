@@ -188,6 +188,8 @@ textarea.form-control { min-height: 140px; resize: vertical; }
 }
 
 .reveal-card { opacity: 0; transform: translateY(16px); transition: opacity .5s ease-out, transform .5s ease-out, border-color .25s ease-out, box-shadow .25s ease-out; transition-delay: calc(var(--i) * 120ms), calc(var(--i) * 120ms), 0s, 0s; }
+.reveal-item { opacity: 0; transform: translateY(16px); transition: opacity .5s ease-out, transform .5s ease-out; transition-delay: calc(var(--i) * 120ms); }
+.reveal-grid.is-in .reveal-item { opacity: 1; transform: none; }
 .reveal-grid.is-in .reveal-card { opacity: 1; transform: none; }
 .card-icon { transition: transform .25s ease-out, box-shadow .25s ease-out; }
 @media (hover: hover) and (pointer: fine) {
@@ -198,7 +200,7 @@ textarea.form-control { min-height: 140px; resize: vertical; }
   .reveal-grid.is-in .reveal-card.quote-card:hover { transform: translateY(-3px); }
 }
 @media (prefers-reduced-motion: reduce) {
-  .reveal-card, .card-icon, .svc-check { transition: none !important; opacity: 1 !important; transform: none !important; }
+  .reveal-card, .reveal-item, .card-icon, .svc-check { transition: none !important; opacity: 1 !important; transform: none !important; }
 }
 
 .social-btn { display: grid; place-items: center; width: 52px; height: 52px; border-radius: 14px; background: var(--card); border: 1px solid var(--border); color: color-mix(in oklab, var(--foreground) 85%, var(--brand-violet)); opacity: 0; transform: translateY(12px); transition: opacity .5s ease-out calc(var(--i) * 100ms), transform .5s ease-out calc(var(--i) * 100ms), border-color .25s ease-out, box-shadow .25s ease-out; }

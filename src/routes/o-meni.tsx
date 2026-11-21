@@ -1,8 +1,15 @@
 import { createFileRoute } from "@tanstack/react-router";
+import { LayoutGrid, MapPin, User } from "lucide-react";
 import { PageHeading } from "@/components/site-shell";
 import { useReveal } from "@/hooks/use-reveal";
 import { cn } from "@/lib/utils";
 import { projectTech, toolsUsed } from "@/lib/site-data";
+
+const facts = [
+  { icon: MapPin, label: "Lokacija", value: "Paraćin, Srbija" },
+  { icon: LayoutGrid, label: "Fokus", value: "Sajtovi i web aplikacije" },
+  { icon: User, label: "Saradnja", value: "Direktno sa mnom" },
+];
 
 const steps = [
   { n: "01", t: "Razgovor", d: "Upoznajem vaš posao, cilj i ono što želite da postignete." },
@@ -26,11 +33,24 @@ function OMeni() {
   const { ref, cls } = useReveal<HTMLDivElement>();
   const quote = useReveal<HTMLDivElement>();
   const cols = useReveal<HTMLDivElement>();
+  const intro = useReveal<HTMLDivElement>();
   return (
     <div className="wrap py-12 sm:py-20 space-y-14">
       <PageHeading kicker="O meni" title={<>Iza svakog detalja, <span className="text-gradient">lični pristup.</span></>} />
       <div className="grid md:grid-cols-2 gap-8 -mt-6">
-        <p className="text-xl leading-relaxed">Ja sam Đorđe Milenković, web developer posvećen izradi modernih, funkcionalnih i pažljivo dizajniranih digitalnih rešenja.</p>
+        <div ref={intro.ref} className={cn("max-w-[560px]", intro.cls)}>
+          <p className="reveal-item text-[20px] leading-relaxed text-foreground/90" style={{ ["--i" as string]: 0 }}>Ja sam <span className="text-gradient font-semibold">Đorđe Milenković</span>, web developer iz Paraćina. Pravim sajtove i web aplikacije za ljude koji žele da njihov posao bude jasno predstavljen na internetu.</p>
+          <p className="reveal-item mt-4 text-[17px] leading-relaxed text-muted-foreground" style={{ ["--i" as string]: 1 }}>Sa svakim klijentom razgovaram lično, od prve ideje do objave, i trudim se da sve bude jednostavno i razumljivo, bez komplikovanog tehničkog jezika.</p>
+          <div className="mt-8 grid gap-3 sm:grid-cols-3">
+            {facts.map((f, i) => (
+              <div key={f.label} className="glass-card reveal-card p-4" style={{ ["--i" as string]: i + 2 }}>
+                <div className="card-icon h-8 w-8 grid place-items-center rounded-lg bg-gradient-brand text-primary-foreground shadow-glow mb-3"><f.icon size={15} /></div>
+                <p className="text-[11px] uppercase tracking-[0.12em] text-muted-foreground">{f.label}</p>
+                <p className="mt-1 text-sm font-semibold">{f.value}</p>
+              </div>
+            ))}
+          </div>
+        </div>
         <div ref={quote.ref} className={quote.cls}>
           <figure className="quote-card reveal-card" style={{ ["--i" as string]: 0 }}>
             <span className="quote-mark" aria-hidden="true">&ldquo;</span>
