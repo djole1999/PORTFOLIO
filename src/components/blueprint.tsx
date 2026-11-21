@@ -1,8 +1,7 @@
 import { Fragment } from "react";
-import { Link } from "@tanstack/react-router";
 import { ArrowRight, Lightbulb, Code2, Rocket } from "lucide-react";
 import { useReveal } from "@/hooks/use-reveal";
-import { Button } from "@/components/ui/button";
+import { SocialLinks } from "@/components/social-links";
 
 const steps = [
   {
@@ -66,11 +65,7 @@ export function Blueprint() {
         })}
       </div>
 
-      <div className="mt-8 sm:mt-11 flex justify-center">
-        <Button asChild variant="glow" size="lg">
-          <Link to="/kontakt">Zatraži ponudu <ArrowRight /></Link>
-        </Button>
-      </div>
+      <SocialLinks />
     </section>
   );
 }

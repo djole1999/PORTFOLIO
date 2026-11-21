@@ -1,6 +1,4 @@
-import { createFileRoute, Link } from "@tanstack/react-router";
-import { ArrowRight } from "lucide-react";
-import { Button } from "@/components/ui/button";
+import { createFileRoute } from "@tanstack/react-router";
 import { PageHeading } from "@/components/site-shell";
 import { useReveal } from "@/hooks/use-reveal";
 import { cn } from "@/lib/utils";
@@ -57,7 +55,6 @@ function OMeni() {
             <div className="mt-5 flex flex-wrap gap-3">{projectTech.map(t => <span key={t} className="chip">{t}</span>)}</div>
           </div>
         </div>
-        <Button asChild variant="glow" size="lg" className="mt-12"><Link to="/kontakt">Hajde da razgovaramo <ArrowRight /></Link></Button>
       </section>
     </div>
   );

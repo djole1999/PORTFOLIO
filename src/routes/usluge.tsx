@@ -1,6 +1,5 @@
-import { createFileRoute, Link } from "@tanstack/react-router";
-import { ArrowRight, Check, Code2, Globe, Wrench } from "lucide-react";
-import { Button } from "@/components/ui/button";
+import { createFileRoute } from "@tanstack/react-router";
+import { Check, Code2, Globe, Wrench } from "lucide-react";
 import { PageHeading } from "@/components/site-shell";
 import { services } from "@/lib/site-data";
 import { useReveal } from "@/hooks/use-reveal";
@@ -34,7 +33,6 @@ function Usluge() {
           </article>
         ); })}
       </div>
-      <div className="mt-12 flex justify-center"><Button asChild variant="glow" size="lg"><Link to="/kontakt">Razgovarajmo o vašem projektu <ArrowRight /></Link></Button></div>
     </div>
   );
 }

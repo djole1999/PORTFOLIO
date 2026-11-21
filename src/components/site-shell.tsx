@@ -40,13 +40,13 @@ export function SiteShell({ children }: { children: ReactNode }) {
               <Button variant="ghost" size="icon" aria-label="Prikaži QR kod" aria-expanded={qr} onClick={() => setQr(!qr)}><QrCode /></Button>
               {qr && <QrPanel onClose={() => setQr(false)} />}
             </div>
-            <Button asChild variant="glow" size="sm" className="hidden sm:inline-flex"><Link to="/kontakt">Hajde da razgovaramo <ArrowRight /></Link></Button>
+            <Button asChild variant="glow" size="sm" className="hidden sm:inline-flex"><Link to="/kontakt">Zatraži ponudu <ArrowRight /></Link></Button>
             <Button variant="ghost" size="icon" className="md:hidden" aria-label={open ? "Zatvori meni" : "Otvori meni"} aria-expanded={open} onClick={() => setOpen(!open)}>{open ? <X /> : <Menu />}</Button>
           </div>
         </div>
         {open && (
           <nav className="md:hidden wrap flex flex-col pb-4" aria-label="Mobilna navigacija">
-            {[...nav, { to: "/kontakt", label: "Kontakt" } as const].map(n => <Link key={n.to} to={n.to} activeOptions={{ exact: true }} onClick={() => setOpen(false)} className="mobile-link" activeProps={{ className: "mobile-link is-active" }}>{n.label}</Link>)}
+            {[...nav, { to: "/kontakt", label: "Zatraži ponudu" } as const].map(n => <Link key={n.to} to={n.to} activeOptions={{ exact: true }} onClick={() => setOpen(false)} className="mobile-link" activeProps={{ className: "mobile-link is-active" }}>{n.label}</Link>)}
           </nav>
         )}
       </header>

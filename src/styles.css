@@ -200,3 +200,10 @@ textarea.form-control { min-height: 140px; resize: vertical; }
 @media (prefers-reduced-motion: reduce) {
   .reveal-card, .card-icon, .svc-check { transition: none !important; opacity: 1 !important; transform: none !important; }
 }
+
+.social-btn { display: grid; place-items: center; width: 52px; height: 52px; border-radius: 14px; background: var(--card); border: 1px solid var(--border); color: color-mix(in oklab, var(--foreground) 85%, var(--brand-violet)); opacity: 0; transform: translateY(12px); transition: opacity .5s ease-out calc(var(--i) * 100ms), transform .5s ease-out calc(var(--i) * 100ms), border-color .25s ease-out, box-shadow .25s ease-out; }
+.reveal-grid.is-in .social-btn { opacity: 1; transform: none; }
+@media (hover: hover) {
+  .reveal-grid.is-in .social-btn:hover { transform: translateY(-3px); transition-delay: 0s; border-color: color-mix(in oklab, var(--brand-violet) 60%, var(--brand-blue)); box-shadow: 0 10px 30px -10px color-mix(in oklab, var(--brand-violet) 70%, transparent); }
+}
+@media (prefers-reduced-motion: reduce) { .social-btn { transition: none !important; opacity: 1 !important; transform: none !important; } }
