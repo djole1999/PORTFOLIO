@@ -41,19 +41,21 @@ function OMeni() {
       <section aria-labelledby="rad"><h2 id="rad" className="text-2xl font-semibold mb-6">Način rada</h2>
         <div ref={ref} className={`grid sm:grid-cols-3 gap-4${cls}`}>{steps.map((s, i) => <div key={s.n} className="glass-card reveal-card p-5" style={{ ["--i" as string]: i }}><span className="text-gradient font-bold">{s.n}</span><h3 className="mt-2 font-semibold">{s.t}</h3><p className="mt-1 text-sm text-muted-foreground">{s.d}</p></div>)}</div>
       </section>
-      <section aria-labelledby="alati"><h2 id="alati" className="text-2xl font-semibold mb-6">Alati i <span className="text-gradient">tehnologije</span></h2>
-        <div className="space-y-6">
+      <section aria-label="Alati i tehnologije">
+        <div className="grid gap-10 md:grid-cols-2 md:gap-12 items-start">
           <div>
-            <h3 className="text-sm font-semibold mb-3 text-muted-foreground">Alati koje koristim</h3>
-            <div className="flex flex-wrap gap-2">{toolsUsed.map(t => <span key={t} className="tag text-sm px-4 py-2">{t}</span>)}</div>
+            <h2 className="text-gradient text-[26px] leading-tight font-bold md:text-[32px]">Alati</h2>
+            <p className="mt-2 text-base text-muted-foreground">Alati koje koristim</p>
+            <div className="mt-5 flex flex-wrap gap-3">{toolsUsed.map(t => <span key={t} className="chip">{t}</span>)}</div>
           </div>
           <div>
-            <h3 className="text-sm font-semibold mb-3 text-muted-foreground">Tehnologije u mojim projektima</h3>
-            <div className="flex flex-wrap gap-2">{projectTech.map(t => <span key={t} className="tag text-sm px-4 py-2">{t}</span>)}</div>
+            <h2 className="text-gradient text-[26px] leading-tight font-bold md:text-[32px]">Tehnologije</h2>
+            <p className="mt-2 text-base text-muted-foreground">Tehnologije u mojim projektima</p>
+            <div className="mt-5 flex flex-wrap gap-3">{projectTech.map(t => <span key={t} className="chip">{t}</span>)}</div>
           </div>
         </div>
+        <Button asChild variant="glow" size="lg" className="mt-12"><Link to="/kontakt">Hajde da razgovaramo <ArrowRight /></Link></Button>
       </section>
-      <Button asChild variant="glow" size="lg"><Link to="/kontakt">Hajde da razgovaramo <ArrowRight /></Link></Button>
     </div>
   );
 }
