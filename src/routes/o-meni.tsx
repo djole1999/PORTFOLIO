@@ -3,6 +3,7 @@ import { ArrowRight } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { PageHeading } from "@/components/site-shell";
 import { useReveal } from "@/hooks/use-reveal";
+import { cn } from "@/lib/utils";
 import { projectTech, toolsUsed } from "@/lib/site-data";
 
 const steps = [
@@ -26,6 +27,7 @@ export const Route = createFileRoute("/o-meni")({
 function OMeni() {
   const { ref, cls } = useReveal<HTMLDivElement>();
   const quote = useReveal<HTMLDivElement>();
+  const cols = useReveal<HTMLDivElement>();
   return (
     <div className="wrap py-12 sm:py-20 space-y-14">
       <PageHeading kicker="O meni" title={<>Iza svakog detalja, <span className="text-gradient">lični pristup.</span></>} />
@@ -42,12 +44,13 @@ function OMeni() {
         <div ref={ref} className={`grid sm:grid-cols-3 gap-4${cls}`}>{steps.map((s, i) => <div key={s.n} className="glass-card reveal-card p-5" style={{ ["--i" as string]: i }}><span className="text-gradient font-bold">{s.n}</span><h3 className="mt-2 font-semibold">{s.t}</h3><p className="mt-1 text-sm text-muted-foreground">{s.d}</p></div>)}</div>
       </section>
       <section aria-label="Alati i tehnologije">
-        <div className="grid gap-10 md:grid-cols-2 md:gap-12 items-start">
+        <div ref={cols.ref} className={cn("grid items-start gap-y-5 md:grid-cols-[9fr_2fr_9fr]", cols.cls)}>
           <div>
             <h2 className="text-gradient text-[26px] leading-tight font-bold md:text-[32px]">Alati</h2>
             <p className="mt-2 text-base text-muted-foreground">Alati koje koristim</p>
             <div className="mt-5 flex flex-wrap gap-3">{toolsUsed.map(t => <span key={t} className="chip">{t}</span>)}</div>
           </div>
+          <span aria-hidden="true" className="col-rule"><span className="col-rule-line" /><span className="col-rule-dot" /></span>
           <div>
             <h2 className="text-gradient text-[26px] leading-tight font-bold md:text-[32px]">Tehnologije</h2>
             <p className="mt-2 text-base text-muted-foreground">Tehnologije u mojim projektima</p>
