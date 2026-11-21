@@ -31,23 +31,21 @@ function Kontakt() {
     window.location.href = createContactMailto(r.data);
   }
   return (
-    <div className="wrap py-12 sm:py-20 grid lg:grid-cols-2 gap-10">
-      <div>
-        <PageHeading kicker="Kontakt" title={<>Imate ideju? <span className="text-gradient">Hajde da je ostvarimo.</span></>} intro="Javite mi šta imate na umu. Razgovarajmo o vašem sledećem digitalnom projektu." />
-        <div className="space-y-3">
-          <a href={`mailto:${CONTACT_EMAIL}`} className="glass-card flex items-center gap-3 p-4"><Mail size={18} className="text-brand-blue" />{CONTACT_EMAIL}<ArrowUpRight size={15} className="ml-auto" /></a>
-          <a href={CONTACT_PHONE_HREF} className="glass-card flex items-center gap-3 p-4"><Phone size={18} className="text-brand-blue" />{CONTACT_PHONE}<ArrowUpRight size={15} className="ml-auto" /></a>
-        </div>
+    <div className="wrap py-12 sm:py-20">
+      <PageHeading kicker="Kontakt" title={<>Imate ideju? <span className="text-gradient">Hajde da je ostvarimo.</span></>} intro="Javite mi šta imate na umu. Razgovarajmo o vašem sledećem digitalnom projektu." />
+      <div className="grid gap-4 lg:grid-cols-2">
+        <a href={`mailto:${CONTACT_EMAIL}`} className="glass-card flex items-center gap-3 p-4"><Mail size={18} className="text-brand-blue" />{CONTACT_EMAIL}<ArrowUpRight size={15} className="ml-auto" /></a>
+        <a href={CONTACT_PHONE_HREF} className="glass-card flex items-center gap-3 p-4"><Phone size={18} className="text-brand-blue" />{CONTACT_PHONE}<ArrowUpRight size={15} className="ml-auto" /></a>
       </div>
-      <form className="glass-card p-5 sm:p-8 space-y-5 self-start" onSubmit={submit} noValidate>
+      <form className="glass-card mt-10 space-y-5 p-5 self-start sm:p-8 lg:mt-14 lg:grid lg:grid-cols-2 lg:gap-5 lg:space-y-0" onSubmit={submit} noValidate>
         <div><label className="block text-sm mb-2" htmlFor="name">Vaše ime</label><input className="form-control" id="name" name="name" placeholder="Kako se zovete?" autoComplete="name" maxLength={100} /></div>
         <div><label className="block text-sm mb-2" htmlFor="lastName">Vaše prezime</label><input className="form-control" id="lastName" name="lastName" placeholder="Kako se prezivate?" autoComplete="family-name" maxLength={100} /></div>
         <div><label className="block text-sm mb-2" htmlFor="email">Email adresa</label><input className="form-control" id="email" name="email" type="email" placeholder="vas@email.com" autoComplete="email" maxLength={255} /></div>
         <div><label className="block text-sm mb-2" htmlFor="phone">Broj telefona <span className="text-xs font-normal text-muted-foreground">(opciono)</span></label><input className="form-control" id="phone" name="phone" type="tel" placeholder="npr. 06x xxx xxxx" autoComplete="tel" maxLength={30} /></div>
-        <div><label className="block text-sm mb-2" htmlFor="message">Vaša poruka</label><textarea className="form-control" id="message" name="message" placeholder="Recite mi nešto više o svojoj ideji..." maxLength={2000} /></div>
-        <Button type="submit" variant="glow" size="lg" className="w-full">Pošalji poruku <ArrowUpRight /></Button>
-        <p className="text-xs text-muted-foreground">Otvara se vaš program za email sa pripremljenom porukom.</p>
-        {feedback && <p role={isError ? "alert" : "status"} className={`text-sm ${isError ? "text-destructive" : "text-brand-blue"}`}>{feedback}</p>}
+        <div className="lg:col-span-2"><label className="block text-sm mb-2" htmlFor="message">Vaša poruka</label><textarea className="form-control lg:h-[150px] lg:min-h-[150px]" id="message" name="message" placeholder="Recite mi nešto više o svojoj ideji..." maxLength={2000} /></div>
+        <Button type="submit" variant="glow" size="lg" className="w-full lg:col-span-2">Pošalji poruku <ArrowUpRight /></Button>
+        <p className="text-xs text-muted-foreground lg:col-span-2">Otvara se vaš program za email sa pripremljenom porukom.</p>
+        {feedback && <p role={isError ? "alert" : "status"} className={`text-sm lg:col-span-2 ${isError ? "text-destructive" : "text-brand-blue"}`}>{feedback}</p>}
       </form>
     </div>
   );
