@@ -24,7 +24,7 @@ function Kontakt() {
   function submit(e: FormEvent<HTMLFormElement>) {
     e.preventDefault();
     const f = new FormData(e.currentTarget);
-    const r = contactSchema.safeParse({ name: f.get("name"), email: f.get("email"), message: f.get("message") });
+    const r = contactSchema.safeParse({ name: f.get("name"), lastName: f.get("lastName"), email: f.get("email"), phone: f.get("phone"), message: f.get("message") });
     if (!r.success) { setIsError(true); setFeedback(r.error.issues[0]?.message ?? "Proverite unete podatke."); return; }
     setIsError(false);
     setFeedback(`Poruka je pripremljena. Pošaljite je iz svog programa za email. Ako se nije otvorio, pišite mi direktno na ${CONTACT_EMAIL}.`);
@@ -41,7 +41,9 @@ function Kontakt() {
       </div>
       <form className="glass-card p-5 sm:p-8 space-y-5 self-start" onSubmit={submit} noValidate>
         <div><label className="block text-sm mb-2" htmlFor="name">Vaše ime</label><input className="form-control" id="name" name="name" placeholder="Kako se zovete?" autoComplete="name" maxLength={100} /></div>
+        <div><label className="block text-sm mb-2" htmlFor="lastName">Vaše prezime</label><input className="form-control" id="lastName" name="lastName" placeholder="Kako se prezivate?" autoComplete="family-name" maxLength={100} /></div>
         <div><label className="block text-sm mb-2" htmlFor="email">Email adresa</label><input className="form-control" id="email" name="email" type="email" placeholder="vas@email.com" autoComplete="email" maxLength={255} /></div>
+        <div><label className="block text-sm mb-2" htmlFor="phone">Broj telefona <span className="text-xs font-normal text-muted-foreground">(opciono)</span></label><input className="form-control" id="phone" name="phone" type="tel" placeholder="npr. 06x xxx xxxx" autoComplete="tel" maxLength={30} /></div>
         <div><label className="block text-sm mb-2" htmlFor="message">Vaša poruka</label><textarea className="form-control" id="message" name="message" placeholder="Recite mi nešto više o svojoj ideji..." maxLength={2000} /></div>
         <Button type="submit" variant="glow" size="lg" className="w-full">Pošalji poruku <ArrowUpRight /></Button>
         <p className="text-xs text-muted-foreground">Otvara se vaš program za email sa pripremljenom porukom.</p>
