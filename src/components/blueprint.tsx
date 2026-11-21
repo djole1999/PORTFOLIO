@@ -1,104 +1,73 @@
-import { useEffect, useState } from "react";
+import { Fragment } from "react";
 import { Link } from "@tanstack/react-router";
-import { ArrowRight } from "lucide-react";
+import { ArrowRight, Lightbulb, Code2, Rocket } from "lucide-react";
 import { Button } from "@/components/ui/button";
-import { Lightbulb, Code2, Rocket, Check, Lock, Gauge, Globe } from "lucide-react";
 
-const IdejaView = () => (
-  <div className="p-5 space-y-3">
-    {[["Početna", "Cilj i glavna poruka", 100], ["Usluge", "Šta nudite i kome", 75], ["Kontakt", "Kako vas klijent pronalazi", 50]].map(([t, d, w], i) => (
-      <div key={t as string} className="flex items-center gap-3 rounded-xl border border-border bg-card/60 p-3 fade-up" style={{ animationDelay: `${i * 90}ms` }}>
-        <span className="grid h-8 w-8 place-items-center rounded-lg bg-accent text-xs font-semibold">{i + 1}</span>
-        <div className="flex-1 min-w-0"><p className="text-sm font-medium">{t}</p><p className="text-[13px] text-foreground/75 truncate">{d}</p>
-          <div className="mt-2 h-1 rounded bg-accent"><div className="bar-grow h-1 rounded bg-gradient-brand" style={{ width: `${w}%`, animationDelay: `${200 + i * 120}ms` }} /></div></div>
-      </div>
-    ))}
-  </div>
-);
-
-const KodView = () => (
-  <pre className="p-5 text-[13px] leading-6 font-mono overflow-x-auto">
-    <code>
-      <span className="text-muted-foreground">{"// hero.tsx"}</span>{"\n"}
-      <span style={{ color: "var(--brand-violet)" }}>export function</span> <span style={{ color: "var(--brand-blue)" }}>Hero</span>() {"{"}{"\n"}
-      {"  "}<span style={{ color: "var(--brand-violet)" }}>return</span> ({"\n"}
-      {"    "}&lt;<span style={{ color: "var(--brand-blue)" }}>section</span>&gt;{"\n"}
-      {"      "}&lt;h1&gt;Vaš posao, predstavljen kako treba.&lt;/h1&gt;{"\n"}
-      {"    "}&lt;/<span style={{ color: "var(--brand-blue)" }}>section</span>&gt;{"\n"}
-      {"  "});{"\n"}{"}"} <span className="caret" />
-    </code>
-  </pre>
-);
-
-const LansView = () => (
-  <div className="p-5 grid grid-cols-2 gap-3">
-    <div className="col-span-2 flex items-center gap-3 rounded-xl border border-border bg-card/60 p-3 fade-up">
-      <Globe size={18} className="text-muted-foreground" /><span className="text-sm flex-1 truncate">vas-sajt.rs</span>
-      <span className="inline-flex items-center gap-1.5 rounded-full bg-gradient-brand px-2.5 py-0.5 text-[11px] font-semibold text-primary-foreground"><span className="h-1.5 w-1.5 rounded-full bg-primary-foreground glow-pulse" /> Uživo</span>
-    </div>
-    {[[Gauge, "Brzina", "[OVDE UNESI]"], [Lock, "HTTPS", "SSL uključen"], [Check, "Telefon", "[OVDE UNESI]"], [Check, "Računar", "[OVDE UNESI]"]].map(([I, t, d], i) => {
-      const Icon = I as typeof Gauge;
-      return (
-        <div key={t as string} className="rounded-xl border border-border bg-card/60 p-3 fade-up" style={{ animationDelay: `${(i + 1) * 90}ms` }}>
-          <Icon size={16} style={{ color: "var(--brand-blue)" }} /><p className="mt-2 text-sm font-medium">{t as string}</p><p className="text-[13px] text-foreground/75">{d as string}</p>
-        </div>
-      );
-    })}
-  </div>
-);
-
-const phases = [
-  { id: "ideja", label: "Ideja", time: "[OVDE UNESI]", icon: Lightbulb, file: "plan.md", title: "Skica i plan", text: "Razgovaramo o cilju, publici i sadržaju. Nastaje jasna struktura stranica.", View: IdejaView },
-  { id: "kod", label: "Kod & UI", time: "[OVDE UNESI]", icon: Code2, file: "hero.tsx", title: "Dizajn postaje kod", text: "Skica se pretvara u čist, brz i prilagodljiv interfejs.", View: KodView },
-  { id: "objava", label: "Objava", time: "[OVDE UNESI]", icon: Rocket, file: "vas-sajt.rs", title: "Sajt je uživo", text: "Provera na svim uređajima i objava. Sajt je spreman za posetioce.", View: LansView },
+const steps = [
+  {
+    n: "01",
+    label: "Ideja",
+    icon: Lightbulb,
+    text: "Razgovaramo o tome šta radite, kome se obraćate i šta posetilac treba da uradi na sajtu. Na osnovu toga nastaje plan stranica.",
+  },
+  {
+    n: "02",
+    label: "Izrada",
+    icon: Code2,
+    text: "Plan pretvaram u sajt koji lepo izgleda i radi podjednako dobro na telefonu i računaru. Pre objave dobijate pregled i možete da tražite izmene.",
+  },
+  {
+    n: "03",
+    label: "Objava",
+    icon: Rocket,
+    text: "Sajt ide na internet na vašoj adresi, sa uključenom zaštitom (HTTPS). Ostajem dostupan za izmene i dopune po dogovoru.",
+  },
 ];
-const DURATION = 4500;
+
+function Connector() {
+  return (
+    <div className="hidden md:flex w-12 shrink-0 items-center gap-1 px-1" aria-hidden="true">
+      <span className="h-px flex-1 bg-border" />
+      <ArrowRight size={14} className="text-brand-blue/70" />
+    </div>
+  );
+}
 
 export function Blueprint() {
-  const [active, setActive] = useState(0);
-  const [paused, setPaused] = useState(false);
-  const [reduced, setReduced] = useState(false);
-  useEffect(() => {
-    const m = window.matchMedia("(prefers-reduced-motion: reduce)");
-    setReduced(m.matches);
-    const on = (e: MediaQueryListEvent) => setReduced(e.matches);
-    m.addEventListener("change", on);
-    return () => m.removeEventListener("change", on);
-  }, []);
-  useEffect(() => {
-    if (paused || reduced) return;
-    const t = setTimeout(() => setActive(a => (a + 1) % phases.length), DURATION);
-    return () => clearTimeout(t);
-  }, [active, paused, reduced]);
-  const p = phases[active] ?? phases[0]!;
   return (
-    <section className="relative glass-card overflow-hidden p-5 sm:p-10" aria-labelledby="bp-title" onMouseEnter={() => setPaused(true)} onMouseLeave={() => setPaused(false)}>
-      <div className="pointer-events-none absolute -top-32 -right-32 h-72 w-72 rounded-full blur-3xl glow-pulse" style={{ background: "color-mix(in oklab, var(--brand-violet) 30%, transparent)" }} />
-      <div className="relative grid lg:grid-cols-[1fr_1.15fr] gap-8 lg:gap-12 items-stretch">
-        <div className="flex flex-col">
-          <p className="kicker">Kako nastaje sajt</p>
-          <h2 id="bp-title" className="text-2xl sm:text-4xl font-semibold tracking-tight">Od ideje do objave <span className="text-gradient">u 3 koraka</span></h2>
-          <div className="mt-8 grid gap-3" role="tablist" aria-label="Faze rada">
-            {phases.map((ph, i) => (
-              <button key={ph.id} role="tab" aria-selected={i === active} onClick={() => setActive(i)} className={`step-card ${i === active ? "is-active" : ""}`}>
-                <div className="flex items-center gap-4">
-                  <span className="step-icon"><ph.icon size={18} /></span>
-                  <div className="flex-1"><p className="step-num">KORAK 0{i + 1} · {ph.label} · {ph.time}</p><p className="font-semibold">{ph.label}</p>
-                    {i === active && <p className="mt-1 text-sm text-muted-foreground fade-up">{ph.text}</p>}</div>
-                </div>
-                {i === active && !paused && !reduced && <span key={`${active}-bar`} className="step-progress bar-grow" style={{ animationDuration: `${DURATION}ms`, animationTimingFunction: "linear" }} />}
-              </button>
-            ))}
-          </div>
-          <p className="mt-4 text-[13px] text-foreground/70">Posle objave: izmene i podrška po dogovoru.</p>
-        </div>
-        <div className="stage flex flex-col lg:mt-[4.5rem] border-[color-mix(in_oklab,var(--brand-blue)_35%,transparent)] shadow-[0_0_60px_-20px_var(--brand-blue)]" role="tabpanel" aria-label={p.title}>
-          <div className="stage-bar"><span className="bp-dot" /><span className="bp-dot" /><span className="bp-dot" /><span className="ml-2">{p.file}</span><span className="ml-auto font-medium text-foreground">{p.title}</span></div>
-          <div key={p.id} className="fade-up flex-1 flex flex-col justify-center"><p.View /></div>
-        </div>
+    <section className="py-4 sm:py-8" aria-labelledby="bp-title">
+      <div className="max-w-2xl fade-up">
+        <p className="kicker">Kako nastaje sajt</p>
+        <h2 id="bp-title" className="text-2xl sm:text-4xl font-semibold tracking-tight">
+          Od ideje do objave <span className="text-gradient">u 3 koraka</span>
+        </h2>
       </div>
-      <div className="relative mt-8 flex justify-center">
-        <Button asChild variant="glow" size="lg" className={active === 2 ? "shadow-glow" : ""}><Link to="/kontakt">Zatraži ponudu <ArrowRight /></Link></Button>
+
+      <div className="mt-10 sm:mt-14 flex flex-col md:flex-row items-stretch">
+        {steps.map((s, i) => {
+          const Icon = s.icon;
+          return (
+            <Fragment key={s.n}>
+              {i > 0 && <Connector />}
+              <article className="glass-card flex-1 p-7 sm:p-8 fade-up" style={{ animationDelay: `${i * 90}ms` }}>
+                <div className="flex items-start justify-between gap-4">
+                  <span className="grid h-11 w-11 place-items-center rounded-xl bg-gradient-brand text-primary-foreground shadow-glow">
+                    <Icon size={20} />
+                  </span>
+                  <span className="text-gradient text-4xl sm:text-5xl font-bold leading-none tracking-tight">{s.n}</span>
+                </div>
+                <h3 className="mt-7 text-xl font-semibold">{s.label}</h3>
+                <p className="mt-3 text-[15px] leading-relaxed text-foreground/80">{s.text}</p>
+              </article>
+            </Fragment>
+          );
+        })}
+      </div>
+
+      <div className="mt-12 sm:mt-16 flex justify-center">
+        <Button asChild variant="glow" size="lg">
+          <Link to="/kontakt">Zatraži ponudu <ArrowRight /></Link>
+        </Button>
       </div>
     </section>
   );
