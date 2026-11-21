@@ -25,12 +25,18 @@ export const Route = createFileRoute("/o-meni")({
 
 function OMeni() {
   const { ref, cls } = useReveal<HTMLDivElement>();
+  const quote = useReveal<HTMLDivElement>();
   return (
     <div className="wrap py-12 sm:py-20 space-y-14">
       <PageHeading kicker="O meni" title={<>Iza svakog detalja, <span className="text-gradient">lični pristup.</span></>} />
       <div className="grid md:grid-cols-2 gap-8 -mt-6">
         <p className="text-xl leading-relaxed">Ja sam Đorđe Milenković, web developer posvećen izradi modernih, funkcionalnih i pažljivo dizajniranih digitalnih rešenja.</p>
-        <p className="text-foreground/80 leading-relaxed">Verujem da dobar sajt treba da bude <span className="text-gradient">jednostavan za korišćenje</span>, <span className="text-gradient">jasan u komunikaciji</span> i <span className="text-gradient">pouzdan u radu</span>. Kroz lične i demo projekte istražujem različite pristupe dizajnu i razvoju, sa posebnom pažnjom prema detaljima i iskustvu na <span className="text-gradient">svakom uređaju</span>.</p>
+        <div ref={quote.ref} className={quote.cls}>
+          <figure className="quote-card reveal-card" style={{ ["--i" as string]: 0 }}>
+            <span className="quote-mark" aria-hidden="true">&ldquo;</span>
+            <blockquote className="quote-text">Verujem da dobar sajt treba da bude <span className="text-gradient">jednostavan za korišćenje</span>, <span className="text-gradient">jasan u komunikaciji</span> i <span className="text-gradient">pouzdan u radu</span>. Kroz lične i demo projekte istražujem različite pristupe dizajnu i razvoju, sa posebnom pažnjom prema detaljima i iskustvu na <span className="text-gradient">svakom uređaju</span>.</blockquote>
+          </figure>
+        </div>
       </div>
       <section aria-labelledby="rad"><h2 id="rad" className="text-2xl font-semibold mb-6">Način rada</h2>
         <div ref={ref} className={`grid sm:grid-cols-3 gap-4${cls}`}>{steps.map((s, i) => <div key={s.n} className="glass-card reveal-card p-5" style={{ ["--i" as string]: i }}><span className="text-gradient font-bold">{s.n}</span><h3 className="mt-2 font-semibold">{s.t}</h3><p className="mt-1 text-sm text-muted-foreground">{s.d}</p></div>)}</div>
