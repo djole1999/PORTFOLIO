@@ -33,11 +33,19 @@ function Kontakt() {
   return (
     <div className="wrap py-12 sm:py-20">
       <PageHeading kicker="Kontakt" title={<>Imate ideju? <span className="text-gradient">Hajde da je ostvarimo.</span></>} intro="Javite mi šta imate na umu. Razgovarajmo o vašem sledećem digitalnom projektu." />
-      <div className="grid gap-4 lg:grid-cols-2">
-        <a href={`mailto:${CONTACT_EMAIL}`} className="glass-card flex items-center gap-3 p-4"><Mail size={18} className="text-brand-blue" />{CONTACT_EMAIL}<ArrowUpRight size={15} className="ml-auto" /></a>
-        <a href={CONTACT_PHONE_HREF} className="glass-card flex items-center gap-3 p-4"><Phone size={18} className="text-brand-blue" />{CONTACT_PHONE}<ArrowUpRight size={15} className="ml-auto" /></a>
+      <div className="mb-3">
+        <p className="kicker" style={{ marginBottom: 4 }}>Moj kontakt</p>
+        <p className="text-sm text-muted-foreground">Pišite ili pozovite me direktno.</p>
       </div>
-      <form className="glass-card mt-10 space-y-5 p-5 self-start sm:p-8 lg:mt-14 lg:grid lg:grid-cols-2 lg:gap-5 lg:space-y-0" onSubmit={submit} noValidate>
+      <div className="grid gap-4 lg:grid-cols-2">
+        <a href={`mailto:${CONTACT_EMAIL}`} className="glass-card flex items-center gap-3 p-4"><Mail size={18} className="text-brand-blue shrink-0" /><span className="flex flex-col"><span className="text-[11px] uppercase tracking-[0.12em] text-muted-foreground">Email</span><span>{CONTACT_EMAIL}</span></span><ArrowUpRight size={15} className="ml-auto" /></a>
+        <a href={CONTACT_PHONE_HREF} className="glass-card flex items-center gap-3 p-4"><Phone size={18} className="text-brand-blue shrink-0" /><span className="flex flex-col"><span className="text-[11px] uppercase tracking-[0.12em] text-muted-foreground">Telefon</span><span>{CONTACT_PHONE}</span></span><ArrowUpRight size={15} className="ml-auto" /></a>
+      </div>
+      <div className="mt-12 mb-3">
+        <p className="kicker" style={{ marginBottom: 4 }}>Pošaljite upit</p>
+        <p className="text-sm text-muted-foreground">Ili popunite formu i javiću vam se.</p>
+      </div>
+      <form className="glass-card space-y-5 p-5 self-start sm:p-8 lg:grid lg:grid-cols-2 lg:gap-5 lg:space-y-0" onSubmit={submit} noValidate>
         <div><label className="block text-sm mb-2" htmlFor="name">Vaše ime</label><input className="form-control" id="name" name="name" placeholder="Kako se zovete?" autoComplete="name" maxLength={100} /></div>
         <div><label className="block text-sm mb-2" htmlFor="lastName">Vaše prezime</label><input className="form-control" id="lastName" name="lastName" placeholder="Kako se prezivate?" autoComplete="family-name" maxLength={100} /></div>
         <div><label className="block text-sm mb-2" htmlFor="email">Email adresa</label><input className="form-control" id="email" name="email" type="email" placeholder="vas@email.com" autoComplete="email" maxLength={255} /></div>
