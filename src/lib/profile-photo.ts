@@ -1,6 +1,4 @@
-/**
- * Profile photo shown on the home page.
- * To use a photo: put it in public/ (e.g. public/profile.jpg) and set "/profile.jpg" here.
- * null shows the "ĐM" initials.
- */
-export const PROFILE_PHOTO: string | null = null;
+import photo from "@/assets/profile.jpg.asset.json";
+
+/** Profile photo shown on the home page. Replace the asset pointer to change it. */
+export const PROFILE_PHOTO: string | null = photo.url;
