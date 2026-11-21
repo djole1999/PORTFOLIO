@@ -1,9 +1,9 @@
-import { useEffect, useRef, useState } from "react";
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { ArrowRight, Check, Code2, Globe, Wrench } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { PageHeading } from "@/components/site-shell";
 import { services } from "@/lib/site-data";
+import { useReveal } from "@/hooks/use-reveal";
 
 const icons = [Globe, Code2, Wrench];
 
@@ -20,22 +20,14 @@ export const Route = createFileRoute("/usluge")({
 });
 
 function Usluge() {
-  const ref = useRef<HTMLDivElement>(null);
-  const [shown, setShown] = useState(false);
-  useEffect(() => {
-    const el = ref.current;
-    if (!el || typeof IntersectionObserver === "undefined") { setShown(true); return; }
-    const io = new IntersectionObserver(([e]) => { if (e?.isIntersecting) { setShown(true); io.disconnect(); } }, { threshold: 0.15 });
-    io.observe(el);
-    return () => io.disconnect();
-  }, []);
+  const { ref, cls } = useReveal<HTMLDivElement>();
   return (
     <div className="wrap py-12 sm:py-20">
       <PageHeading kicker="Usluge" title={<>Dobra ideja zaslužuje <span className="text-gradient">dobro rešenje.</span></>} />
-      <div ref={ref} className={`grid md:grid-cols-3 gap-6 lg:gap-8 svc-grid${shown ? " is-in" : ""}`}>
+      <div ref={ref} className={`grid md:grid-cols-3 gap-6 lg:gap-8 ${cls}`}>
         {services.map((s, i) => { const Icon = icons[i] ?? Globe; return (
-          <article key={s.name} className="glass-card svc-card h-full p-8 sm:p-9" style={{ ["--i" as string]: i }}>
-            <div className="svc-icon h-12 w-12 grid place-items-center rounded-xl bg-gradient-brand text-primary-foreground shadow-glow mb-7"><Icon size={22} /></div>
+          <article key={s.name} className="glass-card reveal-card h-full p-8 sm:p-9" style={{ ["--i" as string]: i }}>
+            <div className="card-icon h-12 w-12 grid place-items-center rounded-xl bg-gradient-brand text-primary-foreground shadow-glow mb-7"><Icon size={22} /></div>
             <h2 className="text-2xl font-bold tracking-tight">{s.name}</h2>
             <p className="mt-3 text-[15px] leading-relaxed text-foreground/80">{s.description}</p>
             <ul className="mt-7 space-y-3">{s.gets.map((g, j) => <li key={g} className="flex gap-3 text-[15px] text-foreground/90"><Check size={17} className="svc-check text-brand-blue shrink-0 mt-0.5" style={{ ["--j" as string]: j }} />{g}</li>)}</ul>

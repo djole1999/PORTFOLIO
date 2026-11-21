@@ -1,6 +1,7 @@
 import { Fragment } from "react";
 import { Link } from "@tanstack/react-router";
 import { ArrowRight, Lightbulb, Code2, Rocket } from "lucide-react";
+import { useReveal } from "@/hooks/use-reveal";
 import { Button } from "@/components/ui/button";
 
 const steps = [
@@ -34,8 +35,9 @@ function Connector() {
 }
 
 export function Blueprint() {
+  const { ref, cls } = useReveal<HTMLDivElement>();
   return (
-    <section className="py-4 sm:py-8" aria-labelledby="bp-title">
+    <section className="py-2 sm:py-4" aria-labelledby="bp-title">
       <div className="mx-auto max-w-2xl text-center fade-up">
         <p className="kicker">Kako nastaje sajt</p>
         <h2 id="bp-title" className="text-2xl sm:text-4xl font-semibold tracking-tight">
@@ -43,15 +45,15 @@ export function Blueprint() {
         </h2>
       </div>
 
-      <div className="mt-10 sm:mt-14 flex flex-col md:flex-row items-stretch">
+      <div ref={ref} className={`mt-7 sm:mt-9 flex flex-col md:flex-row items-stretch${cls}`}>
         {steps.map((s, i) => {
           const Icon = s.icon;
           return (
             <Fragment key={s.n}>
               {i > 0 && <Connector />}
-              <article className="glass-card flex-1 p-7 sm:p-8 fade-up" style={{ animationDelay: `${i * 90}ms` }}>
+              <article className="glass-card reveal-card flex-1 p-7 sm:p-8" style={{ ["--i" as string]: i }}>
                 <div className="flex items-start justify-between gap-4">
-                  <span className="grid h-11 w-11 place-items-center rounded-xl bg-gradient-brand text-primary-foreground shadow-glow">
+                  <span className="card-icon grid h-11 w-11 place-items-center rounded-xl bg-gradient-brand text-primary-foreground shadow-glow">
                     <Icon size={20} />
                   </span>
                   <span className="text-gradient text-4xl sm:text-5xl font-bold leading-none tracking-tight">{s.n}</span>
