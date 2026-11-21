@@ -1,4 +1,5 @@
 import { Logo } from "@/components/logo";
+import { CircuitBg } from "@/components/circuit-bg";
 import { Link } from "@tanstack/react-router";
 import { useEffect, useState, type ReactNode } from "react";
 import { ArrowRight, Menu, QrCode, X } from "lucide-react";
@@ -29,6 +30,7 @@ export function SiteShell({ children }: { children: ReactNode }) {
   const [qr, setQr] = useState(false);
   return (
     <div className="site-bg min-h-screen flex flex-col">
+      <CircuitBg />
       <header className="sticky top-0 z-40 border-b border-border/60 bg-background/70 backdrop-blur-xl">
         <div className="wrap flex h-16 items-center justify-between gap-4">
           <Link to="/" className="monogram" aria-label="Đorđe Milenković, početna"><Logo /></Link>
