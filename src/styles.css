@@ -109,3 +109,16 @@ textarea.form-control { min-height: 140px; resize: vertical; }
 .float-c { animation: float-y 5s ease-in-out -1s infinite; }
 .glow-pulse { animation: pulse-glow 4s ease-in-out infinite; }
 @media (prefers-reduced-motion: reduce) { .float-a,.float-b,.float-c,.glow-pulse { animation: none; } }
+
+.svc-card { opacity: 0; transform: translateY(16px); transition: opacity .5s ease-out, transform .5s ease-out, border-color .25s ease-out, box-shadow .25s ease-out; transition-delay: calc(var(--i) * 120ms), calc(var(--i) * 120ms), 0s, 0s; }
+.svc-grid.is-in .svc-card { opacity: 1; transform: none; }
+.svc-icon { transition: transform .25s ease-out, box-shadow .25s ease-out; }
+@media (hover: hover) and (pointer: fine) {
+  .svc-grid.is-in .svc-card:hover { transform: translateY(-4px); transition-delay: 0s; border-color: color-mix(in oklab, var(--brand-violet) 60%, var(--brand-blue)); box-shadow: 0 18px 50px -18px color-mix(in oklab, var(--brand-violet) 65%, transparent); }
+  .svc-card:hover .svc-icon { transform: scale(1.05); box-shadow: 0 12px 44px -8px color-mix(in oklab, var(--brand-violet) 80%, transparent); }
+  .svc-check { opacity: .55; transform: scale(.85); transition: opacity .25s ease-out, transform .25s ease-out; }
+  .svc-card:hover .svc-check { opacity: 1; transform: scale(1); transition-delay: calc(var(--j) * 50ms); }
+}
+@media (prefers-reduced-motion: reduce) {
+  .svc-card, .svc-icon, .svc-check { transition: none !important; opacity: 1 !important; transform: none !important; }
+}

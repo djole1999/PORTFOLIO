@@ -11,10 +11,9 @@ export const projects = [
 ];
 
 export const services = [
-  { name: "Izrada poslovnih sajtova", description: "Nemate sajt ili vam je star? Dobijate stranicu na kojoj klijenti odmah vide šta radite, gde ste i kako da vas kontaktiraju. Za frizerske salone, tattoo studije, restorane, zanatlije, teretane i male firme.", gets: ["Kontakt forma i dugme za poziv ili Viber", "Mapa sa lokacijom vašeg lokala", "Galerija radova i cenovnik"] },
-  { name: "Izrada web aplikacija", description: "Imate ideju za alat koji ne postoji gotov? Dobijate aplikaciju koja radi tačno ono što vama treba, bez funkcija koje nećete koristiti.", gets: ["Pristup sa telefona i računara", "Admin panel za izmenu sadržaja", "Mogućnost kasnije nadogradnje"] },
-  { name: "Sajt koji radi na telefonu", description: "Većina vaših klijenata vas traži sa telefona? Dobijate sajt na kom se sve vidi i radi jednim dodirom.", gets: ["Dugme za poziv jednim dodirom", "Čitljiv tekst bez zumiranja", "Meni lak za korišćenje na telefonu"] },
-  { name: "Prilagođena digitalna rešenja", description: "Treba vam nešto što ne staje u standardni sajt? Dobijate rešenje po meri za vaš način rada.", gets: ["Rezervacije termina ili porudžbine", "Prijava korisnika i evidencija", "Dogovor oko svake funkcije pre početka rada"] },
+  { name: "Izrada sajta", description: "Sajt koji jasno pokazuje čime se bavite i olakšava ljudima da vas kontaktiraju.", gets: ["Prilagođen telefonu i računaru", "Kontakt forma i mapa", "Objava na vašoj adresi"] },
+  { name: "Web aplikacije", description: "Alat napravljen tačno po vašem poslu, kojem se pristupa iz browsera.", gets: ["Prijava korisnika", "Pregled i izmena podataka", "Radi na svakom uređaju"] },
+  { name: "Izmene i podrška", description: "Vaš sajt ostaje ažuran i posle objave.", gets: ["Izmena teksta i slika", "Dodavanje novih sadržaja", "Ispravka grešaka"] },
 ];
 
 export const toolsUsed = ["Lovable", "Bubble", "Supabase", "Vercel", "GitHub"];
