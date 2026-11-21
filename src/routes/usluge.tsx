@@ -1,10 +1,17 @@
-import { createFileRoute } from "@tanstack/react-router";
-import { Check, Code2, Globe, Wrench } from "lucide-react";
+import { createFileRoute, Link } from "@tanstack/react-router";
+import { ArrowRight, Check, Clock, Code2, Globe, Layers, SlidersHorizontal, Wrench } from "lucide-react";
 import { PageHeading } from "@/components/site-shell";
+import { Button } from "@/components/ui/button";
 import { services } from "@/lib/site-data";
 import { useReveal } from "@/hooks/use-reveal";
 
 const icons = [Globe, Code2, Wrench];
+
+const priceFactors = [
+  { icon: Layers, name: "Obim", text: "Koliko stranica i sadržaja sajt ima." },
+  { icon: SlidersHorizontal, name: "Funkcije", text: "Da li vam trebaju forma, prijava korisnika, rezervacije ili slično." },
+  { icon: Clock, name: "Rok", text: "Koliko brzo vam je sajt potreban." },
+];
 
 export const Route = createFileRoute("/usluge")({
   component: Usluge,
@@ -20,6 +27,7 @@ export const Route = createFileRoute("/usluge")({
 
 function Usluge() {
   const { ref, cls } = useReveal<HTMLDivElement>();
+  const price = useReveal<HTMLDivElement>();
   return (
     <div className="wrap py-12 sm:py-20">
       <PageHeading kicker="Usluge" title={<>Dobra ideja zaslužuje <span className="text-gradient">dobro rešenje.</span></>} />
@@ -33,6 +41,24 @@ function Usluge() {
           </article>
         ); })}
       </div>
+      <section aria-labelledby="cena-heading" className="mt-16">
+        <p className="kicker">Cena</p>
+        <h2 id="cena-heading" className="page-title">Cena <span className="text-gradient">zavisi od vašeg projekta</span></h2>
+        <p className="mt-5 text-lg text-muted-foreground max-w-2xl">Svaki projekat je drugačiji, zato cenu određujemo zajedno, nakon razgovora o tome šta vam treba.</p>
+        <div ref={price.ref} className={`mt-10 grid md:grid-cols-3 gap-6 ${price.cls}`}>
+          {priceFactors.map((f, i) => (
+            <article key={f.name} className="glass-card reveal-card h-full p-6" style={{ ["--i" as string]: i }}>
+              <div className="card-icon h-10 w-10 grid place-items-center rounded-xl bg-gradient-brand text-primary-foreground shadow-glow mb-5"><f.icon size={19} /></div>
+              <h3 className="text-lg font-bold tracking-tight">{f.name}</h3>
+              <p className="mt-2 text-[15px] leading-relaxed text-foreground/80">{f.text}</p>
+            </article>
+          ))}
+        </div>
+        <div className="mt-10 flex flex-col items-center gap-4 text-center">
+          <p className="text-muted-foreground">Ponudu dobijate unapred i bez obaveze.</p>
+          <Button asChild variant="glow" size="lg"><Link to="/kontakt">Zatraži ponudu <ArrowRight /></Link></Button>
+        </div>
+      </section>
     </div>
   );
 }
