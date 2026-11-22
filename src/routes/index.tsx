@@ -4,7 +4,6 @@ import { Button } from "@/components/ui/button";
 import { ProfilePhoto } from "@/components/profile-photo";
 import { Blueprint } from "@/components/blueprint";
 import { HeroVisual } from "@/components/hero-visual";
-import { ProjectGrid } from "@/components/project-card";
 import { CircuitBg } from "@/components/circuit-bg";
 
 export const Route = createFileRoute("/")({
@@ -33,13 +32,6 @@ function Index() {
         <div className="order-1 md:order-2"><HeroVisual /></div>
       </section>
       <Blueprint />
-      <section aria-labelledby="featured-heading" className="pt-4">
-        <div className="flex items-end justify-between gap-4 mb-8">
-          <div><p className="kicker">Projekti</p><h2 id="featured-heading" className="text-3xl sm:text-4xl font-bold">Izdvojeni <span className="text-gradient">projekti</span></h2></div>
-          <Link to="/projekti" className="shrink-0 text-sm font-semibold hover:text-brand-blue">Svi projekti →</Link>
-        </div>
-        <ProjectGrid />
-      </section>
     </div>
   );
 }
