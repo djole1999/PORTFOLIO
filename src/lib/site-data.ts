@@ -1,10 +1,11 @@
 export { CONTACT_EMAIL, CONTACT_PHONE, CONTACT_PHONE_HREF } from "./site-data-contact";
 
 
-export const projects = [
-  { name: "Atelier", description: "Luksuzni arhitektonski template", status: "Demo projekat", tech: ["React", "Tailwind CSS", "Vercel"], image: "/atelier-preview.png", url: "https://template-mocha-one.vercel.app/" },
-  { name: "Gold Vet", description: "Demo sajt veterinarske ambulante", status: "Demo projekat", tech: ["React", "Responsive dizajn", "Vercel"], image: "/gold-vet-preview.png", url: "https://responsive-magic-nu.vercel.app/" },
-  { name: "Tattoo Studio Lupus", description: "Sajt za lokalni tattoo studio", status: "U izradi", tech: ["React", "Tailwind CSS", "Vercel"], image: "/lupus-preview.png", url: "https://lupus-seven.vercel.app/" },
+export type Project = { title: string; description: string; tags: string[]; image?: string; url?: string };
+
+export const projects: Project[] = [
+  { title: "Tattoo Studio Lupus", description: "Sajt i aplikacija za tattoo studio u Paraćinu. Napravljeno za stvarnog klijenta.", tags: ["Lovable", "Supabase", "Vercel"], image: "/lupus-preview.png", url: "https://lupus-seven.vercel.app/" },
+  { title: "Momentum", description: "Aplikacija za praćenje navika sa interfejsom na srpskom jeziku. Lični projekat.", tags: [] },
 ];
 
 export const services = [

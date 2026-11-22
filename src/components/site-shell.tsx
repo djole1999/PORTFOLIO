@@ -7,8 +7,8 @@ import { Button } from "@/components/ui/button";
 
 const nav = [
   { to: "/", label: "Početna" },
-  { to: "/projekti", label: "Projekti" },
   { to: "/usluge", label: "Usluge" },
+  { to: "/projekti", label: "Projekti" },
   { to: "/o-meni", label: "O meni" },
 ] as const;
 
@@ -33,7 +33,7 @@ export function SiteShell({ children }: { children: ReactNode }) {
         <div className="wrap flex h-16 items-center justify-between gap-4">
           <Link to="/" className="monogram" aria-label="Đorđe Milenković, početna"><Logo /></Link>
           <nav className="hidden md:flex items-center gap-1" aria-label="Glavna navigacija">
-            {nav.filter(n => n.to !== "/projekti").map(n => <Link key={n.to} to={n.to} activeOptions={{ exact: true }} className="nav-link" activeProps={{ className: "nav-link is-active" }}>{n.label}</Link>)}
+            {nav.map(n => <Link key={n.to} to={n.to} activeOptions={{ exact: true }} className="nav-link" activeProps={{ className: "nav-link is-active" }}>{n.label}</Link>)}
           </nav>
           <div className="flex items-center gap-2">
             <div className="relative">

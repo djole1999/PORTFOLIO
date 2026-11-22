@@ -259,3 +259,10 @@ textarea.form-control { min-height: 140px; resize: vertical; }
 .form-success { animation: form-success-in 0.5s ease-out both; }
 @keyframes form-success-in { from { opacity: 0; transform: translateY(8px); } to { opacity: 1; transform: none; } }
 @media (prefers-reduced-motion: reduce) { .form-success { animation: none; } }
+
+.project-media { aspect-ratio: 16 / 10; overflow: hidden; border-radius: 0.875rem; border: 1px solid var(--border); }
+.project-media img { transition: transform .5s ease-out; }
+.project-fallback { background: radial-gradient(circle at 30% 20%, color-mix(in oklab, var(--brand-violet) 55%, transparent), transparent 60%), linear-gradient(135deg, color-mix(in oklab, var(--brand-violet) 35%, var(--background)), color-mix(in oklab, var(--brand-blue) 35%, var(--background))); transition: transform .5s ease-out; }
+@media (hover: hover) and (prefers-reduced-motion: no-preference) {
+  .reveal-card:hover .project-media img, .reveal-card:hover .project-fallback { transform: scale(1.03); }
+}
