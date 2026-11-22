@@ -1,12 +1,16 @@
 import { z } from "zod";
-import { CONTACT_EMAIL } from "./site-data-contact";
 
 const PHONE_PATTERN = /^[\d\s()+-]+$/;
+
+export const WEB3FORMS_URL = "https://api.web3forms.com/submit";
+// Web3Forms access keys are public by design (used from the browser).
+export const WEB3FORMS_ACCESS_KEY = "c390deb1-187d-4491-b4fb-357b307dab2c";
+export const CONTACT_SUBJECT = "Novi upit sa sajta";
 
 export const contactSchema = z.object({
   name: z.string().trim().min(2, "Unesite ime od najmanje 2 znaka.").max(100, "Ime može imati najviše 100 znakova."),
   lastName: z.string().trim().min(2, "Unesite prezime od najmanje 2 znaka.").max(100, "Prezime može imati najviše 100 znakova."),
-  email: z.string().trim().email("Unesite ispravnu email adresu.").max(255),
+  email: z.string().trim().min(1, "Unesite email adresu.").email("Unesite ispravnu email adresu.").max(255),
   phone: z
     .string()
     .trim()
@@ -16,9 +20,21 @@ export const contactSchema = z.object({
   message: z.string().trim().min(10, "Poruka treba da ima najmanje 10 znakova.").max(2000, "Poruka može imati najviše 2000 znakova."),
 });
 
-export function createContactMailto(input: unknown) {
-  const data = contactSchema.parse(input);
-  const lines = [`Ime i prezime: ${data.name} ${data.lastName}`, `Email: ${data.email}`];
-  if (data.phone) lines.push(`Telefon: ${data.phone}`);
-  return `mailto:${CONTACT_EMAIL}?subject=${encodeURIComponent(`Upit za saradnju: ${data.name}`)}&body=${encodeURIComponent(`${lines.join("\n")}\n\n${data.message}`)}`;
+export type ContactInput = z.infer<typeof contactSchema>;
+
+export function createWeb3FormsPayload(input: unknown, botcheck = false) {
+  const d = contactSchema.parse(input);
+  const fullName = `${d.name} ${d.lastName}`;
+  const payload: Record<string, string | boolean> = {
+    access_key: WEB3FORMS_ACCESS_KEY,
+    subject: CONTACT_SUBJECT,
+    from_name: fullName,
+    ime: d.name,
+    prezime: d.lastName,
+    email: d.email,
+    poruka: d.message,
+    botcheck,
+  };
+  if (d.phone) payload["telefon"] = d.phone;
+  return payload;
 }
