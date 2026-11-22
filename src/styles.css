@@ -156,7 +156,7 @@ textarea.form-control { min-height: 140px; resize: vertical; }
 .photo-inner > .photo-initials { background: var(--card); }
 @keyframes photo-in { from { opacity: 0; transform: scale(.95); } to { opacity: 1; transform: none; } }
 @keyframes photo-spin { to { transform: rotate(360deg); } }
-@media (max-width: 640px) { .photo-frame { height: 120px; width: 120px; padding: 6px; } }
+@media (max-width: 767px) { .photo-frame { height: 146px; width: 146px; padding: 6px; } }
 @media (prefers-reduced-motion: reduce) { .photo-frame, .photo-ring { animation: none; } .photo-frame::before { transition: none; } }
 
 @keyframes float-y { 0%,100% { transform: translateY(0); } 50% { transform: translateY(-12px); } }
@@ -250,4 +250,9 @@ textarea.form-control { min-height: 140px; resize: vertical; }
 .project-fallback { background: radial-gradient(circle at 30% 20%, color-mix(in oklab, var(--brand-violet) 55%, transparent), transparent 60%), linear-gradient(135deg, color-mix(in oklab, var(--brand-violet) 35%, var(--background)), color-mix(in oklab, var(--brand-blue) 35%, var(--background))); transition: transform .5s ease-out; }
 @media (hover: hover) and (prefers-reduced-motion: no-preference) {
   .reveal-card:hover .project-media img, .reveal-card:hover .project-fallback { transform: scale(1.03); }
+}
+
+@media (max-width: 767px) {
+  .hero-cubes { position: absolute; left: 50%; top: -6px; width: 240px; transform: translateX(-50%); opacity: .28; filter: blur(1.5px); pointer-events: none; z-index: 0; }
+  .hero-cubes > div { max-width: none; }
 }
