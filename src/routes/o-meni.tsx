@@ -1,6 +1,7 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { LayoutGrid, MapPin, User } from "lucide-react";
 import { PageHeading } from "@/components/site-shell";
+import { useGapMidpoint } from "@/hooks/use-gap-midpoint";
 import { useReveal } from "@/hooks/use-reveal";
 import { cn } from "@/lib/utils";
 import { projectTech, toolsUsed } from "@/lib/site-data";
@@ -27,6 +28,7 @@ export const Route = createFileRoute("/o-meni")({
 function OMeni() {
   const quote = useReveal<HTMLDivElement>();
   const cols = useReveal<HTMLDivElement>();
+  const gap = useGapMidpoint<HTMLDivElement>("[data-tools]", "[data-tech]");
   const intro = useReveal<HTMLDivElement>();
   return (
     <div className="wrap py-12 sm:py-20 space-y-14">
@@ -53,14 +55,18 @@ function OMeni() {
         </div>
       </div>
       <section aria-label="Alati i tehnologije">
-        <div ref={cols.ref} className={cn("grid items-start gap-y-5 md:grid-cols-[9fr_2fr_9fr]", cols.cls)}>
-          <div>
+        <div
+          ref={(node) => { cols.ref.current = node; gap.ref(node); }}
+          style={{ ["--rule-x" as string]: gap.x == null ? undefined : `${gap.x}px` }}
+          className={cn("grid items-start gap-y-5 md:relative md:flex", cols.cls)}
+        >
+          <div data-tools className="md:w-fit md:max-w-[45%]">
             <h2 className="text-gradient text-[26px] leading-tight font-bold md:text-[32px]">Alati</h2>
             <p className="mt-2 text-base text-muted-foreground">Alati koje koristim</p>
             <div className="mt-5 flex flex-wrap gap-3">{toolsUsed.map(t => <span key={t} className="chip">{t}</span>)}</div>
           </div>
           <span aria-hidden="true" className="col-rule"><span className="col-rule-line" /><span className="col-rule-dot" /></span>
-          <div>
+          <div data-tech className="md:ml-auto md:w-fit md:max-w-[45%]">
             <h2 className="text-gradient text-[26px] leading-tight font-bold md:text-[32px]">Tehnologije</h2>
             <p className="mt-2 text-base text-muted-foreground">Tehnologije u mojim projektima</p>
             <div className="mt-5 flex flex-wrap gap-3">{projectTech.map(t => <span key={t} className="chip">{t}</span>)}</div>
