@@ -1,73 +1,86 @@
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 
 /**
- * Suptilna animirana pozadina celog sajta: tanke svetleće putanje
- * (hologram / elektronska ploča) sa impulsima koji putuju u svim smerovima.
- * Montira se jednom u SiteShell-u, pa je ista na svim stranicama bez
- * treperenja pri prelasku. Isključivanje: uklonite <CircuitBg /> iz
- * site-shell.tsx; jačina se smanjuje kroz opacity u .circuit-bg stilovima.
+ * Pozadinska linija početne stranice: jedna svetleća "zmija" koja se
+ * spušta kroz prazan prostor (levo/desno od containera i kroz razmake
+ * između sekcija). Putanja se računa iz stvarnog rasporeda stranice.
+ * Isključivanje: uklonite <CircuitBg /> iz src/routes/index.tsx.
  */
-const PATHS = [
-  // leva ivica
-  "M 40 -20 V 920",
-  // desna ivica
-  "M 1400 -20 V 920",
-  // gornja ivica
-  "M -20 40 H 1460",
-  // donja ivica
-  "M -20 860 H 1460",
-  // kratka leva
-  "M 70 920 V 560",
-  // kratka desna
-  "M 1370 -20 V 360",
-] as const;
+const R = 14;
 
-const PULSES = [
-  { path: 0, dur: "13s", delay: "0s", rev: false },
-  { path: 1, dur: "11s", delay: "-4s", rev: true },
-  { path: 2, dur: "15s", delay: "-7s", rev: false },
-  { path: 3, dur: "12s", delay: "-2s", rev: true },
-  { path: 4, dur: "9s", delay: "-5s", rev: false },
-  { path: 5, dur: "10s", delay: "-8s", rev: true },
-] as const;
+function buildPath(host: HTMLElement): string {
+  const wrap = host.parentElement?.querySelector<HTMLElement>(".wrap");
+  if (!wrap) return "";
+  const hostRect = host.getBoundingClientRect();
+  const w = hostRect.width;
+  const h = hostRect.height;
+  if (w < 768) return `M 9 0 V ${h}`;
+  const wr = wrap.getBoundingClientRect();
+  const left = (wr.left - hostRect.left) / 2;
+  const right = w - left;
+  const kids = Array.from(wrap.children).filter((c) => !c.classList.contains("circuit-bg")) as HTMLElement[];
+  const gaps: number[] = [];
+  for (let i = 0; i < kids.length - 1; i++) {
+    const a = kids[i]!.getBoundingClientRect();
+    const b = kids[i + 1]!.getBoundingClientRect();
+    gaps.push((a.bottom + b.top) / 2 - hostRect.top);
+  }
+  const footer = host.parentElement?.querySelector("footer");
+  const endY = footer ? footer.getBoundingClientRect().top - hostRect.top : h;
+  let x = left;
+  let d = `M ${x} 0`;
+  for (const y of gaps) {
+    const nx = x === left ? right : left;
+    const dir = nx > x ? 1 : -1;
+    d += ` V ${y - R} Q ${x} ${y} ${x + dir * R} ${y} H ${nx - dir * R} Q ${nx} ${y} ${nx} ${y + R}`;
+    x = nx;
+  }
+  return d + ` V ${endY}`;
+}
 
 export function CircuitBg() {
+  const ref = useRef<HTMLDivElement>(null);
+  const [d, setD] = useState("");
+  const [size, setSize] = useState({ w: 0, h: 0 });
   const [hidden, setHidden] = useState(false);
 
   useEffect(() => {
+    const host = ref.current;
+    if (!host) return;
+    const update = () => {
+      const r = host.getBoundingClientRect();
+      setSize({ w: r.width, h: r.height });
+      setD(buildPath(host));
+    };
+    update();
+    const ro = new ResizeObserver(update);
+    ro.observe(host);
+    host.parentElement && ro.observe(host.parentElement);
+    window.addEventListener("resize", update);
     const onVis = () => setHidden(document.hidden);
     document.addEventListener("visibilitychange", onVis);
-    return () => document.removeEventListener("visibilitychange", onVis);
+    return () => {
+      ro.disconnect();
+      window.removeEventListener("resize", update);
+      document.removeEventListener("visibilitychange", onVis);
+    };
   }, []);
 
   return (
-    <div aria-hidden="true" className={hidden ? "circuit-bg is-paused" : "circuit-bg"}>
-      <svg viewBox="0 0 1440 900" preserveAspectRatio="xMidYMid slice" focusable="false">
-        <defs>
-          <linearGradient id="cb-grad" x1="0" y1="0" x2="1" y2="1">
-            <stop offset="0%" stopColor="var(--brand-violet)" />
-            <stop offset="100%" stopColor="var(--brand-blue)" />
-          </linearGradient>
-        </defs>
-        {PATHS.map((d, i) => (
-          <path key={`base-${i}`} d={d} className="cb-base" fill="none" stroke="url(#cb-grad)" pathLength={100} />
-        ))}
-        {PULSES.map((p, i) => (
-          <path
-            key={`pulse-${i}`}
-            d={PATHS[p.path]}
-            className={`cb-pulse cb-p${i + 1}`}
-            fill="none"
-            stroke="url(#cb-grad)"
-            pathLength={100}
-            style={{
-              animationDuration: p.dur,
-              animationDelay: p.delay,
-              animationDirection: p.rev ? "reverse" : "normal",
-            }}
-          />
-        ))}
-      </svg>
+    <div ref={ref} aria-hidden="true" className={hidden ? "circuit-bg is-paused" : "circuit-bg"}>
+      {d && (
+        <svg width={size.w} height={size.h} viewBox={`0 0 ${size.w} ${size.h}`} focusable="false">
+          <defs>
+            <linearGradient id="cb-grad" x1="0" y1="0" x2="0" y2="1">
+              <stop offset="0%" stopColor="var(--brand-violet)" />
+              <stop offset="100%" stopColor="var(--brand-blue)" />
+            </linearGradient>
+          </defs>
+          <path d={d} className="cb-base" fill="none" stroke="url(#cb-grad)" />
+          <path d={d} className="cb-pulse cb-tail" fill="none" stroke="url(#cb-grad)" pathLength={100} />
+          <path d={d} className="cb-pulse" fill="none" stroke="url(#cb-grad)" pathLength={100} />
+        </svg>
+      )}
     </div>
   );
 }

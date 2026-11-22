@@ -232,41 +232,16 @@ textarea.form-control { min-height: 140px; resize: vertical; }
 }
 @media (prefers-reduced-motion: reduce) { .social-label, .social-pill, .social-btn { transition: none !important; opacity: 1 !important; transform: none !important; } }
 
-/* Pozadinske "hologram" linije (CircuitBg) — fiksirane iza sadržaja, uz ivice ekrana */
-.circuit-bg {
-  position: fixed;
-  inset: 0;
-  z-index: -1;
-  pointer-events: none;
-  overflow: hidden;
-  /* maska: linije blede ka sredini gde je sadržaj, jake su uz ivice */
-  -webkit-mask-image: radial-gradient(ellipse 62% 55% at 50% 42%, transparent 25%, black 78%);
-  mask-image: radial-gradient(ellipse 62% 55% at 50% 42%, transparent 25%, black 78%);
-}
-.circuit-bg svg { width: 100%; height: 100%; display: block; }
-.cb-base { stroke-width: 1; opacity: .06; }
-.cb-pulse {
-  stroke-width: 1.5;
-  stroke-linecap: round;
-  stroke-dasharray: 14 86;
-  opacity: .75;
-  filter: drop-shadow(0 0 6px color-mix(in oklab, var(--brand-violet) 80%, transparent));
-  animation-name: cb-travel;
-  animation-timing-function: linear;
-  animation-iteration-count: infinite;
-}
-@keyframes cb-travel { from { stroke-dashoffset: 100; } to { stroke-dashoffset: -14; } }
+/* Pozadinska linija početne (CircuitBg) */
+.circuit-bg { position: absolute; inset: 0; z-index: -1; pointer-events: none; overflow: hidden; }
+.circuit-bg svg { display: block; }
+.cb-base { stroke-width: 1.5; opacity: .11; }
+.cb-pulse { stroke-width: 1.5; stroke-linecap: round; stroke-dasharray: 4 96; opacity: .95; filter: drop-shadow(0 0 6px color-mix(in oklab, var(--brand-violet) 85%, transparent)); animation: cb-travel 16s linear infinite; }
+.cb-tail { stroke-dasharray: 10 90; opacity: .3; animation-name: cb-tail; }
+@keyframes cb-travel { from { stroke-dashoffset: 4; } to { stroke-dashoffset: -100; } }
+@keyframes cb-tail { from { stroke-dashoffset: 10; } to { stroke-dashoffset: -94; } }
 .circuit-bg.is-paused .cb-pulse { animation-play-state: paused; }
-@media (max-width: 768px) {
-  .cb-p4, .cb-p5, .cb-p6 { display: none; }
-  .cb-base { opacity: .04; }
-  .cb-pulse { opacity: .5; }
-  .circuit-bg { -webkit-mask-image: radial-gradient(ellipse 70% 65% at 50% 45%, transparent 45%, black 90%); mask-image: radial-gradient(ellipse 70% 65% at 50% 45%, transparent 45%, black 90%); }
-}
-@media (prefers-reduced-motion: reduce) {
-  .cb-pulse { animation: none !important; opacity: 0 !important; }
-  .cb-base { opacity: .07; }
-}
+@media (prefers-reduced-motion: reduce) { .cb-pulse { animation: none !important; opacity: 0 !important; } }
 
 .form-success { animation: form-success-in 0.5s ease-out both; }
 @keyframes form-success-in { from { opacity: 0; transform: translateY(8px); } to { opacity: 1; transform: none; } }
