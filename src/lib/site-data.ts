@@ -5,7 +5,7 @@ export type Project = { title: string; description: string; tags: string[]; badg
 
 export const projects: Project[] = [
   { title: "Atelier", description: "Luksuzni arhitektonski template", tags: ["React", "Tailwind CSS", "Vercel"], badge: "Demo projekat", image: "/atelier-preview.png", url: "https://template-mocha-one.vercel.app/" },
-  { title: "Gold Vet", description: "Demo sajt veterinarske ambulante", tags: ["React", "Responsive dizajn", "Vercel"], badge: "Demo projekat", image: "/gold-vet-preview.png" },
+  { title: "Gold Vet", description: "Demo sajt veterinarske ambulante", tags: ["React", "Responsive dizajn", "Vercel"], badge: "Demo projekat", image: "/gold-vet-preview.png", url: "https://responsive-magic-nu.vercel.app/" },
   { title: "Tattoo Studio Lupus", description: "Sajt za lokalni tattoo studio", tags: ["React", "Tailwind CSS", "Vercel"], badge: "U izradi", image: "/lupus-preview.png", url: "https://lupus-seven.vercel.app/" },
 ];
 
