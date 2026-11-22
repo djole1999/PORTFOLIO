@@ -77,6 +77,10 @@
   background-attachment: scroll;
 }
 .monogram { display: inline-flex; align-items: center; gap: 10px; font-weight: 700; letter-spacing: -0.02em; }
+.monogram:focus:not(:focus-visible) { outline: none; }
+.monogram:focus-visible { outline: 2px solid var(--brand-blue); outline-offset: 4px; border-radius: 6px; }
+.cta-link { display: inline-flex; min-height: 44px; align-items: center; font-weight: 600; color: var(--brand-blue); transition: color .2s; }
+@media (hover: hover) { .cta-link:hover { color: var(--brand-violet); } }
 .monogram svg { filter: drop-shadow(0 0 12px color-mix(in oklab, var(--brand-violet) 60%, transparent)); transition: transform .4s; }
 @media (hover: hover) { .monogram:hover svg { transform: rotate(-8deg) scale(1.05); } }
 .nav-link { padding: 8px 14px; border-radius: 8px; font-size: 14px; color: var(--muted-foreground); transition: color .2s, background .2s; }

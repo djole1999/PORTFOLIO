@@ -36,7 +36,7 @@ export function Blueprint() {
   const { ref, cls } = useReveal<HTMLDivElement>();
   return (
     <section className="py-2 sm:py-4" aria-labelledby="bp-title">
-      <div className="mx-auto max-w-2xl text-center fade-up">
+      <div className="max-w-2xl fade-up">
         <p className="kicker">Kako nastaje sajt</p>
         <h2 id="bp-title" className="text-2xl sm:text-4xl font-semibold tracking-tight">
           Od ideje do objave <span className="text-gradient">u 3 koraka</span>

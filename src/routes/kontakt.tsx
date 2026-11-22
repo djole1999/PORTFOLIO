@@ -44,7 +44,7 @@ function Kontakt() {
     <div className="wrap py-12 sm:py-20">
       <PageHeading kicker="Kontakt" title={<>Imate ideju? <span className="text-gradient">Hajde da je ostvarimo.</span></>} intro="Javite mi šta imate na umu. Razgovarajmo o vašem sledećem digitalnom projektu." />
       <div className="mb-3">
-        <p className="kicker" style={{ marginBottom: 4 }}>Moj kontakt</p>
+        <p className="kicker">Moj kontakt</p>
         <p className="text-sm text-muted-foreground">Pišite ili pozovite me direktno.</p>
       </div>
       <div className="grid gap-4 lg:grid-cols-2">
@@ -52,8 +52,8 @@ function Kontakt() {
         <a href={CONTACT_PHONE_HREF} className="glass-card flex items-center gap-3 p-4"><Phone size={18} className="text-brand-blue shrink-0" /><span className="flex flex-col"><span className="text-[11px] uppercase tracking-[0.12em] text-muted-foreground">Telefon</span><span>{CONTACT_PHONE}</span></span><ArrowUpRight size={15} className="ml-auto" /></a>
       </div>
       <div className="mt-12 mb-3">
-        <p className="kicker" style={{ marginBottom: 4 }}>Pošaljite upit</p>
-        <p className="text-sm text-muted-foreground">Ili popunite formu i javiću vam se.</p>
+        <p className="kicker">Pošaljite upit</p>
+        <p className="text-sm text-muted-foreground">Ili popunite formu za upit.</p>
       </div>
       {status === "sent" ? (
         <div className="glass-card form-success flex flex-col items-center gap-3 p-8 text-center sm:p-12" role="status">
