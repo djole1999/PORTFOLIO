@@ -8,7 +8,7 @@ import { useEffect, useRef, useState } from "react";
  */
 const R = 14;
 
-function buildPath(host: HTMLElement): string {
+function buildPath(host: HTMLElement, startRight = false): string {
   const wrap = host.parentElement?.querySelector<HTMLElement>(".wrap");
   if (!wrap) return "";
   const hostRect = host.getBoundingClientRect();
@@ -27,7 +27,7 @@ function buildPath(host: HTMLElement): string {
   }
   const footer = host.parentElement?.querySelector("footer");
   const endY = footer ? footer.getBoundingClientRect().top - hostRect.top : h;
-  let x = left;
+  let x = startRight ? right : left;
   let d = `M ${x} 0`;
   for (const y of gaps) {
     const nx = x === left ? right : left;
@@ -38,9 +38,45 @@ function buildPath(host: HTMLElement): string {
   return d + ` V ${endY}`;
 }
 
+const SPEED = 225; // px u sekundi
+const SEGS = [
+  { len: 190, op: 0.22 },
+  { len: 120, op: 0.5 },
+  { len: 55, op: 1 },
+];
+
+function Snake({ d, delayHalf }: { d: string; delayHalf: boolean }) {
+  const ref = useRef<SVGPathElement>(null);
+  const [total, setTotal] = useState(0);
+  useEffect(() => { setTotal(ref.current?.getTotalLength() ?? 0); }, [d]);
+  const dur = total / SPEED;
+  return (
+    <>
+      <path ref={ref} d={d} fill="none" stroke="none" />
+      {total > 0 && SEGS.map((s) => (
+        <path
+          key={s.len}
+          d={d}
+          className="cb-pulse"
+          fill="none"
+          stroke="url(#cb-grad)"
+          style={{
+            strokeDasharray: `${s.len} ${total + 400}`,
+            opacity: s.op,
+            ["--from" as string]: `${s.len}`,
+            ["--to" as string]: `${-total}`,
+            animationDuration: `${dur}s`,
+            animationDelay: delayHalf ? `${-dur / 2}s` : "0s",
+          }}
+        />
+      ))}
+    </>
+  );
+}
+
 export function CircuitBg() {
   const ref = useRef<HTMLDivElement>(null);
-  const [d, setD] = useState("");
+  const [paths, setPaths] = useState<string[]>([]);
   const [size, setSize] = useState({ w: 0, h: 0 });
   const [hidden, setHidden] = useState(false);
 
@@ -50,12 +86,11 @@ export function CircuitBg() {
     const update = () => {
       const r = host.getBoundingClientRect();
       setSize({ w: r.width, h: r.height });
-      setD(buildPath(host));
+      setPaths(r.width < 768 ? [buildPath(host)] : [buildPath(host), buildPath(host, true)]);
     };
     update();
     const ro = new ResizeObserver(update);
     ro.observe(host);
-    host.parentElement && ro.observe(host.parentElement);
     window.addEventListener("resize", update);
     const onVis = () => setHidden(document.hidden);
     document.addEventListener("visibilitychange", onVis);
@@ -68,17 +103,15 @@ export function CircuitBg() {
 
   return (
     <div ref={ref} aria-hidden="true" className={hidden ? "circuit-bg is-paused" : "circuit-bg"}>
-      {d && (
+      {paths[0] && (
         <svg width={size.w} height={size.h} viewBox={`0 0 ${size.w} ${size.h}`} focusable="false">
           <defs>
-            <linearGradient id="cb-grad" x1="0" y1="0" x2="0" y2="1">
+            <linearGradient id="cb-grad" gradientUnits="userSpaceOnUse" x1="0" y1="0" x2={size.w} y2={size.h}>
               <stop offset="0%" stopColor="var(--brand-violet)" />
               <stop offset="100%" stopColor="var(--brand-blue)" />
             </linearGradient>
           </defs>
-          <path d={d} className="cb-base" fill="none" stroke="url(#cb-grad)" />
-          <path d={d} className="cb-pulse cb-tail" fill="none" stroke="url(#cb-grad)" pathLength={100} />
-          <path d={d} className="cb-pulse" fill="none" stroke="url(#cb-grad)" pathLength={100} />
+          {paths.map((d, i) => <Snake key={i} d={d} delayHalf={i === 1} />)}
         </svg>
       )}
     </div>
