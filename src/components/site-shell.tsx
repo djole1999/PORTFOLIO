@@ -19,7 +19,7 @@ function QrPanel({ onClose }: { onClose: () => void }) {
     <div className="qr-panel" role="dialog" aria-label="QR kod sajta">
       <div className="flex items-center justify-between mb-3"><span className="text-sm font-semibold">Skenirajte sajt</span><button aria-label="Zatvori QR kod" onClick={onClose}><X size={16} /></button></div>
       <div className="rounded-lg bg-foreground p-3">{url && <QRCodeSVG value={url} size={160} bgColor="transparent" fgColor="currentColor" className="text-background" />}</div>
-      <p className="mt-3 text-xs text-muted-foreground break-all">{url}</p>
+      <p className="mt-3 text-xs text-muted-foreground break-all">{url.replace(/^https?:\/\//, "")}</p>
     </div>
   );
 }
