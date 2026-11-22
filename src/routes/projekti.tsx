@@ -2,7 +2,7 @@ import { createFileRoute } from "@tanstack/react-router";
 import { PageHeading } from "@/components/site-shell";
 import { ProjectGrid } from "@/components/project-card";
 
-const desc = "Pravi projekti i primeri na kojima gradim svoj način rada: Tattoo Studio Lupus i Momentum.";
+const desc = "Pravi projekti i primeri na kojima gradim svoj način rada: Tattoo Studio Lupus, Golden Vet i Template.";
 
 export const Route = createFileRoute("/projekti")({
   component: Projekti,

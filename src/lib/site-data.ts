@@ -4,8 +4,9 @@ export { CONTACT_EMAIL, CONTACT_PHONE, CONTACT_PHONE_HREF } from "./site-data-co
 export type Project = { title: string; description: string; tags: string[]; image?: string; url?: string };
 
 export const projects: Project[] = [
-  { title: "Tattoo Studio Lupus", description: "Sajt i aplikacija za tattoo studio u Paraćinu. Napravljeno za stvarnog klijenta.", tags: ["Lovable", "Supabase", "Vercel"], image: "/lupus-preview.png", url: "https://lupus-seven.vercel.app/" },
-  { title: "Momentum", description: "Aplikacija za praćenje navika sa interfejsom na srpskom jeziku. Lični projekat.", tags: [] },
+  { title: "Tattoo Studio Lupus", description: "Sajt i aplikacija za tattoo studio u Paraćinu.", tags: ["Lovable", "Supabase", "Vercel"], url: "https://lupus-seven.vercel.app/" },
+  { title: "Golden Vet", description: "Sajt za veterinarsku ambulantu.", tags: [] },
+  { title: "Template", description: "Šablon sajta koji može da se prilagodi različitim delatnostima.", tags: [] },
 ];
 
 export const services = [
