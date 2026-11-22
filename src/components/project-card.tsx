@@ -22,7 +22,7 @@ function Media({ p }: { p: Project }) {
 export function ProjectGrid() {
   const { ref, cls } = useReveal<HTMLDivElement>();
   return (
-    <div ref={ref} className={"grid gap-5 lg:grid-cols-3" + cls}>
+    <div ref={ref} className={"grid gap-4 md:grid-cols-2 md:gap-5 lg:grid-cols-3" + cls}>
       {projects.map((p, i) => (
         <article key={p.title} className="glass-card reveal-card p-4 flex flex-col gap-3" style={{ "--i": i } as CSSProperties}>
           <Media p={p} />

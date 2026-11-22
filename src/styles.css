@@ -65,7 +65,7 @@
   ::selection { background: color-mix(in oklab, var(--brand-violet) 45%, transparent); }
 }
 
-@utility wrap { width: min(1200px, calc(100% - 40px)); margin-inline: auto; }
+@utility wrap { width: min(1200px, calc(100% - 40px)); margin-inline: auto; @media (max-width: 640px) { width: calc(100% - 36px); } }
 @utility bg-gradient-brand { background-image: var(--gradient-brand); }
 @utility shadow-glow { box-shadow: var(--shadow-glow); }
 @utility text-gradient { background-image: var(--gradient-brand); -webkit-background-clip: text; background-clip: text; color: transparent; }
@@ -78,16 +78,21 @@
 }
 .monogram { display: inline-flex; align-items: center; gap: 10px; font-weight: 700; letter-spacing: -0.02em; }
 .monogram svg { filter: drop-shadow(0 0 12px color-mix(in oklab, var(--brand-violet) 60%, transparent)); transition: transform .4s; }
-.monogram:hover svg { transform: rotate(-8deg) scale(1.05); }
+@media (hover: hover) { .monogram:hover svg { transform: rotate(-8deg) scale(1.05); } }
 .nav-link { padding: 8px 14px; border-radius: 8px; font-size: 14px; color: var(--muted-foreground); transition: color .2s, background .2s; }
 .nav-link:hover, .nav-link.is-active { color: var(--foreground); background: var(--accent); }
-.mobile-link { padding: 14px 4px; font-size: 17px; border-bottom: 1px solid var(--border); color: var(--muted-foreground); }
+.mobile-menu { position: absolute; top: 100%; left: 0; right: 0; height: calc(100dvh - 64px); z-index: 39; overflow-y: auto; background: var(--background); animation: menu-in .25s ease-out; }
+@keyframes menu-in { from { opacity: 0; transform: translateY(-8px); } to { opacity: 1; transform: none; } }
+@media (prefers-reduced-motion: reduce) { .mobile-menu { animation: none; } }
+.footer-link { display: inline-flex; min-height: 44px; align-items: center; color: var(--muted-foreground); transition: color .2s; }
+@media (hover: hover) { .footer-link:hover { color: var(--brand-blue); } }
+.mobile-link { display: flex; min-height: 48px; align-items: center; padding: 12px 4px; font-size: 17px; border-bottom: 1px solid var(--border); color: var(--muted-foreground); }
 .mobile-link.is-active { color: var(--foreground); }
 .qr-panel { position: absolute; right: 0; top: 48px; width: 210px; padding: 16px; border-radius: 14px; background: var(--card); border: 1px solid var(--border); box-shadow: var(--shadow-glow); z-index: 50; }
 .kicker { font-size: 12px; letter-spacing: .14em; text-transform: uppercase; color: var(--brand-blue); margin-bottom: 12px; font-weight: 600; }
 .page-title { font-size: clamp(2.2rem, 6vw, 3.8rem); line-height: 1.05; font-weight: 700; letter-spacing: -0.03em; }
 .glass-card { background: color-mix(in oklab, var(--card) 70%, transparent); border: 1px solid var(--border); border-radius: 20px; backdrop-filter: blur(12px); }
-.glass-card:hover { border-color: color-mix(in oklab, var(--brand-violet) 35%, var(--border)); }
+@media (hover: hover) { .glass-card:hover { border-color: color-mix(in oklab, var(--brand-violet) 35%, var(--border)); } }
 .photo-initials { display: grid; place-items: center; height: 100%; width: 100%; font-size: 40px; font-weight: 700; color: var(--muted-foreground); }
 .tag { display: inline-flex; padding: 4px 10px; border-radius: 9999px; font-size: 12px; border: 1px solid var(--border); color: var(--muted-foreground); }
 .chip { display: inline-flex; align-items: center; padding: 10px 18px; border-radius: 9999px; font-size: 15px; line-height: 1.2; border: 1px solid var(--border); color: var(--muted-foreground); transition: transform .25s ease-out, border-color .25s ease-out, box-shadow .25s ease-out, color .25s ease-out; }
@@ -249,7 +254,9 @@ textarea.form-control { min-height: 140px; resize: vertical; }
 .circuit-bg.is-paused .cb-pulse { animation-play-state: paused; }
 @media (max-width: 768px) {
   .cb-p4, .cb-p5, .cb-p6 { display: none; }
-  .cb-base { opacity: .05; }
+  .cb-base { opacity: .04; }
+  .cb-pulse { opacity: .5; }
+  .circuit-bg { -webkit-mask-image: radial-gradient(ellipse 70% 65% at 50% 45%, transparent 45%, black 90%); mask-image: radial-gradient(ellipse 70% 65% at 50% 45%, transparent 45%, black 90%); }
 }
 @media (prefers-reduced-motion: reduce) {
   .cb-pulse { animation: none !important; opacity: 0 !important; }

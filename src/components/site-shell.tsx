@@ -4,6 +4,8 @@ import { useEffect, useState, type ReactNode } from "react";
 import { ArrowRight, Menu, QrCode, X } from "lucide-react";
 import { QRCodeSVG } from "qrcode.react";
 import { Button } from "@/components/ui/button";
+import { SocialLinks } from "@/components/social-links";
+import { CONTACT_EMAIL, CONTACT_PHONE, CONTACT_PHONE_HREF } from "@/lib/site-data-contact";
 
 const nav = [
   { to: "/", label: "Početna" },
@@ -36,7 +38,7 @@ export function SiteShell({ children }: { children: ReactNode }) {
             {nav.map(n => <Link key={n.to} to={n.to} activeOptions={{ exact: true }} className="nav-link" activeProps={{ className: "nav-link is-active" }}>{n.label}</Link>)}
           </nav>
           <div className="flex items-center gap-2">
-            <div className="relative">
+            <div className="relative hidden sm:block">
               <Button variant="ghost" size="icon" aria-label="Prikaži QR kod" aria-expanded={qr} onClick={() => setQr(!qr)}><QrCode /></Button>
               {qr && <QrPanel onClose={() => setQr(false)} />}
             </div>
@@ -45,15 +47,33 @@ export function SiteShell({ children }: { children: ReactNode }) {
           </div>
         </div>
         {open && (
-          <nav className="md:hidden wrap flex flex-col pb-4" aria-label="Mobilna navigacija">
-            {[...nav, { to: "/kontakt", label: "Zatraži ponudu" } as const].map(n => <Link key={n.to} to={n.to} activeOptions={{ exact: true }} onClick={() => setOpen(false)} className="mobile-link" activeProps={{ className: "mobile-link is-active" }}>{n.label}</Link>)}
+          <nav className="mobile-menu md:hidden" aria-label="Mobilna navigacija">
+            <div className="wrap flex flex-col py-4">
+              {[...nav, { to: "/kontakt", label: "Kontakt" } as const].map(n => <Link key={n.to} to={n.to} activeOptions={{ exact: true }} onClick={() => setOpen(false)} className="mobile-link" activeProps={{ className: "mobile-link is-active" }}>{n.label}</Link>)}
+              <Button asChild variant="glow" size="lg" className="mt-6 w-full"><Link to="/kontakt" onClick={() => setOpen(false)}>Zatraži ponudu <ArrowRight /></Link></Button>
+            </div>
           </nav>
         )}
       </header>
       <main className="flex-1">{children}</main>
       <footer className="border-t border-border/60">
-        <div className="wrap flex flex-col sm:flex-row gap-3 justify-between py-8 text-sm text-muted-foreground">
-          <p>© 2026 Đorđe Milenković. Sva prava zadržana.</p>
+        <div className="wrap py-10">
+          <div className="flex flex-col items-center gap-8 text-center md:flex-row md:items-start md:justify-between md:text-left">
+            <div>
+              <Link to="/" className="monogram" aria-label="Đorđe Milenković, početna"><Logo /></Link>
+              <p className="mt-3 text-sm text-muted-foreground">Sajtovi i web aplikacije iz Paraćina.</p>
+            </div>
+            <div className="flex flex-col items-center md:items-end">
+              <SocialLinks className="flex flex-col items-center gap-3 md:items-end" />
+              <div className="mt-3 flex flex-col items-center text-sm md:items-end">
+                <a href={`mailto:${CONTACT_EMAIL}`} className="footer-link">{CONTACT_EMAIL}</a>
+                <a href={CONTACT_PHONE_HREF} className="footer-link">{CONTACT_PHONE}</a>
+              </div>
+            </div>
+          </div>
+          <div className="mt-10 border-t border-border/60 pt-6 text-center text-xs text-muted-foreground md:text-left">
+            <p>© 2026 Đorđe Milenković. Sva prava zadržana.</p>
+          </div>
         </div>
       </footer>
     </div>

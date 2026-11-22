@@ -11,11 +11,6 @@ const facts = [
   { icon: User, label: "Saradnja", value: "Direktno sa mnom" },
 ];
 
-const steps = [
-  { n: "01", t: "Razgovor", d: "Upoznajem vaš posao, cilj i ono što želite da postignete." },
-  { n: "02", t: "Dizajn i razvoj", d: "Oblikujem i gradim rešenje, uz redovne provere sa vama." },
-  { n: "03", t: "Provera i objava", d: "Testiram na svim uređajima i objavljujem sajt." },
-];
 
 export const Route = createFileRoute("/o-meni")({
   component: OMeni,
@@ -30,7 +25,6 @@ export const Route = createFileRoute("/o-meni")({
 });
 
 function OMeni() {
-  const { ref, cls } = useReveal<HTMLDivElement>();
   const quote = useReveal<HTMLDivElement>();
   const cols = useReveal<HTMLDivElement>();
   const intro = useReveal<HTMLDivElement>();
@@ -58,9 +52,6 @@ function OMeni() {
           </figure>
         </div>
       </div>
-      <section aria-labelledby="rad"><h2 id="rad" className="text-2xl font-semibold mb-6">Način rada</h2>
-        <div ref={ref} className={`grid sm:grid-cols-3 gap-4${cls}`}>{steps.map((s, i) => <div key={s.n} className="glass-card reveal-card p-5" style={{ ["--i" as string]: i }}><span className="text-gradient font-bold">{s.n}</span><h3 className="mt-2 font-semibold">{s.t}</h3><p className="mt-1 text-sm text-muted-foreground">{s.d}</p></div>)}</div>
-      </section>
       <section aria-label="Alati i tehnologije">
         <div ref={cols.ref} className={cn("grid items-start gap-y-5 md:grid-cols-[9fr_2fr_9fr]", cols.cls)}>
           <div>

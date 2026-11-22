@@ -7,10 +7,10 @@ const paths = {
   linkedin: "M4.98 3.5a2.5 2.5 0 1 1 0 5 2.5 2.5 0 0 1 0-5ZM3 9.5h4v11H3v-11Zm6.5 0h3.8v1.5h.1c.5-1 1.8-1.9 3.7-1.9 4 0 4.7 2.6 4.7 6v5.4h-4v-4.8c0-1.2 0-2.6-1.6-2.6s-1.9 1.2-1.9 2.5v4.9h-4v-11Z",
 } as const;
 
-export function SocialLinks() {
+export function SocialLinks({ className = "mt-14 flex flex-col items-center gap-4" }: { className?: string }) {
   const { ref, cls } = useReveal<HTMLDivElement>();
   return (
-    <div ref={ref} className={"mt-14 flex flex-col items-center gap-4" + cls}>
+    <div ref={ref} className={className + cls}>
       <p className="social-label">Pišite mi direktno</p>
       <div className="social-pill">
         {SOCIAL_LINKS.map((s, i) => (

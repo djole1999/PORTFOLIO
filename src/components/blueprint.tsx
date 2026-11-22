@@ -1,7 +1,6 @@
 import { Fragment } from "react";
 import { ArrowRight, Lightbulb, Code2, Rocket } from "lucide-react";
 import { useReveal } from "@/hooks/use-reveal";
-import { SocialLinks } from "@/components/social-links";
 
 const steps = [
   {
@@ -65,7 +64,6 @@ export function Blueprint() {
         })}
       </div>
 
-      <SocialLinks />
     </section>
   );
 }
