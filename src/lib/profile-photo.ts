@@ -1,4 +1,2 @@
-import photo from "@/assets/profile.jpg.asset.json";
-
-/** Profile photo shown on the home page. Replace the asset pointer to change it. */
-export const PROFILE_PHOTO: string | null = photo.url;
+/** Profile photo shown on the home page. Local file in public/ so it works on any host. */
+export const PROFILE_PHOTO: string | null = "/profile.jpg";
