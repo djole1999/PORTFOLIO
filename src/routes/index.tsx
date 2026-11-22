@@ -5,6 +5,7 @@ import { ProfilePhoto } from "@/components/profile-photo";
 import { Blueprint } from "@/components/blueprint";
 import { HeroVisual } from "@/components/hero-visual";
 import { CircuitBg } from "@/components/circuit-bg";
+import { SiteFooter } from "@/components/site-footer";
 
 export const Route = createFileRoute("/")({
   component: Index,
@@ -20,6 +21,7 @@ export const Route = createFileRoute("/")({
 
 function Index() {
   return (
+    <>
     <div className="wrap py-8 sm:py-14 space-y-8 sm:space-y-12">
       <CircuitBg />
       <section className="grid md:grid-cols-[1.4fr_1fr] gap-10 items-center fade-up" aria-labelledby="hero-heading">
@@ -33,5 +35,7 @@ function Index() {
       </section>
       <Blueprint />
     </div>
+    <SiteFooter />
+    </>
   );
 }

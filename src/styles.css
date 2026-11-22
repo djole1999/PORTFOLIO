@@ -85,6 +85,7 @@
 @keyframes menu-in { from { opacity: 0; transform: translateY(-8px); } to { opacity: 1; transform: none; } }
 @media (prefers-reduced-motion: reduce) { .mobile-menu { animation: none; } }
 .footer-link { display: inline-flex; min-height: 44px; align-items: center; color: var(--muted-foreground); transition: color .2s; }
+.footer-icon { color: var(--brand-blue); flex-shrink: 0; }
 @media (hover: hover) { .footer-link:hover { color: var(--brand-blue); } }
 .mobile-link { display: flex; min-height: 48px; align-items: center; padding: 12px 4px; font-size: 17px; border-bottom: 1px solid var(--border); color: var(--muted-foreground); }
 .mobile-link.is-active { color: var(--foreground); }

@@ -4,8 +4,6 @@ import { useEffect, useState, type ReactNode } from "react";
 import { ArrowRight, Menu, QrCode, X } from "lucide-react";
 import { QRCodeSVG } from "qrcode.react";
 import { Button } from "@/components/ui/button";
-import { SocialLinks } from "@/components/social-links";
-import { CONTACT_EMAIL, CONTACT_PHONE, CONTACT_PHONE_HREF } from "@/lib/site-data-contact";
 
 const nav = [
   { to: "/", label: "Početna" },
@@ -56,26 +54,6 @@ export function SiteShell({ children }: { children: ReactNode }) {
         )}
       </header>
       <main className="flex-1">{children}</main>
-      <footer className="border-t border-border/60">
-        <div className="wrap py-10">
-          <div className="flex flex-col items-center gap-8 text-center md:flex-row md:items-start md:justify-between md:text-left">
-            <div>
-              <Link to="/" className="monogram" aria-label="Đorđe Milenković, početna"><Logo /></Link>
-              <p className="mt-3 text-sm text-muted-foreground">Sajtovi i web aplikacije iz Paraćina.</p>
-            </div>
-            <div className="flex flex-col items-center md:items-end">
-              <SocialLinks className="flex flex-col items-center gap-3 md:items-end" />
-              <div className="mt-3 flex flex-col items-center text-sm md:items-end">
-                <a href={`mailto:${CONTACT_EMAIL}`} className="footer-link">{CONTACT_EMAIL}</a>
-                <a href={CONTACT_PHONE_HREF} className="footer-link">{CONTACT_PHONE}</a>
-              </div>
-            </div>
-          </div>
-          <div className="mt-10 border-t border-border/60 pt-6 text-center text-xs text-muted-foreground md:text-left">
-            <p>© 2026 Đorđe Milenković. Sva prava zadržana.</p>
-          </div>
-        </div>
-      </footer>
     </div>
   );
 }
